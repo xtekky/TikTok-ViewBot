@@ -1,2 +1,3 @@
-# TikTok-ViewBot
-Unpatched ViewBot using requests
+ViewBot using requests
+
+idk, star the repo and I'll release it
