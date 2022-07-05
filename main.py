@@ -107,15 +107,11 @@ _    _ _____ _______ _  _  _      ______   _____  _______
             #proxies = self.proxies
         )
 
-        with open("captcha.png", 'wb') as _:
-            _.write(response.content)
-
-        image = Image.open('./captcha.png')
+        image = Image.open(io.BytesIO(response.content))
         image.show()
 
         _cap = Write.Input(" [ ? ] Captcha > ", Colors.blue_to_green, interval=0.0001)
         image.close()
-        os.remove('./captcha.png')
         print('\n')
         
         _response = self.session.post(
