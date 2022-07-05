@@ -1,7 +1,5 @@
-import random, threading, json, cursor, requests, io
+import random, threading, json, cursor, io, requests, os, sys, time
 from pystyle import *
-import requests, os, sys, time
-from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 from PIL import Image
 from urllib.parse import unquote
