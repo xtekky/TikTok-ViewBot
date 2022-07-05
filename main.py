@@ -1,4 +1,4 @@
-import random, threading, json, cursor
+import random, threading, json, cursor, requests, io
 from pystyle import *
 import requests, os, sys, time
 from datetime import datetime, timedelta
@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 from PIL import Image
 from urllib.parse import unquote
 from base64 import b64decode
-import requests
 
 cursor.hide()
 
