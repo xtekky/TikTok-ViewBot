@@ -1,6 +1,6 @@
 ViewBot using requests
 
-Releasing at 50 stars
+yes ik it has 50 stars, but I need some time to release it, be patient
 
 Advantages:
 1)  fast
