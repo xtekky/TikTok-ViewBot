@@ -11,7 +11,7 @@ import requests
 cursor.hide()
 
 try:
-    json.load(open('./config.json'))
+    json.load(open('./config.json', 'r'))
 except:
     input("No config.json found")
     sys.exit()
