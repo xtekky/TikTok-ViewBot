@@ -1,6 +1,4 @@
-ViewBot using requests
-
-yes ik it has 50 stars, but I need some time to release it, be patient
+150 stars = unpatched viewbot using real tiktok api
 
 Advantages:
 1)  fast
