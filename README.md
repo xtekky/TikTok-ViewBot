@@ -1,3 +1,4 @@
+100 stars = captcha solver
 150 stars = unpatched viewbot using real tiktok api
 
 Advantages:
