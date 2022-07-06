@@ -16,3 +16,8 @@ To come:
 1) New design (maybe even aio)
 2) Proxy support
 2) Youtube Tutorial and better Documentation
+
+New design soon:
+<p align="center"> 
+<img src="https://cdn.discordapp.com/attachments/956638415837876284/994287361703825478/unknown.png?size=4096"></img>
+</p>
