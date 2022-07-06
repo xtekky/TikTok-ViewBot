@@ -11,3 +11,8 @@ Advantages:
 2)  lightweight
 3)  easy to use
 4)  mobile users can run it
+
+To come:
+1) New design (maybe even aio)
+2) Proxy support
+2) Youtube Tutorial and better Documentation
