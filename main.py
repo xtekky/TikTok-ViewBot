@@ -126,7 +126,7 @@ _    _ _____ _______ _  _  _      ______   _____  _______
             #proxies = self.proxies
         )
 
-        soup = BeautifulSoup(_response.text, 'lxml')
+        soup = BeautifulSoup(_response.text, 'html.parser')
         r = soup.find("div", {"id": "sid4"})
         key_1 = r.find("input", {"class": "form-control text-center font-weight-bold rounded-0"}).get("name")
 
@@ -174,7 +174,7 @@ _    _ _____ _______ _  _  _      ______   _____  _______
                 self._print(" [ * ] Sending views...")
                 continue
 
-            soup = BeautifulSoup(obf_code, 'lxml')
+            soup = BeautifulSoup(obf_code, 'html.parser')
             try:
                 key_v2 = soup.find("input", {"type": "text"}).get("name")
             except:
