@@ -1,6 +1,15 @@
+<!--
+
 <p align="center"> 
 <img src="https://global.tiktokworld21.com/images/TT_Logo.png"></img>
 </p>
+
+-->
+
+<p align="center"> 
+<img src="https://cdn.discordapp.com/attachments/956638415837876284/994287361703825478/unknown.png?size=4096"></img>
+</p>
+
 
 > 100 stars = captcha solver
 
@@ -16,7 +25,3 @@ To come:
 1) Proxy support
 2) Youtube Tutorial and better Documentation
 
-View bot v2
-<p align="center"> 
-<img src="https://cdn.discordapp.com/attachments/956638415837876284/994287361703825478/unknown.png?size=4096"></img>
-</p>
