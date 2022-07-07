@@ -13,7 +13,6 @@ Advantages:
 4)  mobile users can run it
 
 To come:
-1) New design (maybe even aio)
 2) Proxy support
 2) Youtube Tutorial and better Documentation
 
