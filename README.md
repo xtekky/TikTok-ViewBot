@@ -1,3 +1,7 @@
+<p align="center">
+  PLEASE REPORT BUGS OR IDEAS TO: tekky#1337 / .gg/onlp
+</p>
+
 <!--
 
 <p align="center"> 
