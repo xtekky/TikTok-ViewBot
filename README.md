@@ -14,6 +14,10 @@
 <img src="https://cdn.discordapp.com/attachments/956638415837876284/994399532001530007/unknown.png?size=4096?size=4096"></img>
 </p>
 
+Requirements:
+1) Verify that you have pip and python installed => https://www.youtube.com/watch?v=dYfKJMPNMDw
+2) here are all the libs needed: requests, bs4, cursor, pystyle, pillow
+
 
 > 100 stars = captcha solver
 
