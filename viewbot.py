@@ -62,8 +62,13 @@ class Main:
                 "t": f"{round(random.random(), 8)} {int(time.time())}"
             }
         )
+        try:
+            image = Image.open(io.BytesIO(response.content))
+        except:
+            input(self.format('!', 'Zefoy is returning and invalid captcha, please check VPN (press ENTER to restart)'))
+            os.system(f'python {sys.argv[0]}')
+            os._exit()
 
-        image = Image.open(io.BytesIO(response.content))
         image.show()
         
         captcha_answer = input(self.format('?', 'Solve Captcha > ')) #;print('\n')
