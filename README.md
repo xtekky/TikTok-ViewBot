@@ -13,7 +13,7 @@ Advantages:
 4)  mobile users can run it
 
 To come:
-2) Proxy support
+1) Proxy support
 2) Youtube Tutorial and better Documentation
 
 View bot v2
