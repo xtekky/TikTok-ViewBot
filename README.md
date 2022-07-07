@@ -33,4 +33,5 @@ Advantages:
 To come:
 1) Proxy support
 2) Youtube Tutorial and better Documentation
+3) Bot using freer api so 2x faster (freer api is gay)
 
