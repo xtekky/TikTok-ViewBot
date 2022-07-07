@@ -23,17 +23,21 @@
 
 
 Requirements:
-1) Verify that you have pip and python installed => https://www.youtube.com/watch?v=dYfKJMPNMDw
-2) Run this command in cmd: pip install requests bs4 cursor pystyle pillow
+```
+  1. Verify that you have pip and python installed => https://www.youtube.com/watch?v=dYfKJMPNMDw
+  2. Run this command in cmd: pip install requests bs4 cursor pystyle pillow
+```
 
 Advantages:
-1)  fast, easy
-2)  lightweight
-3)  Has dynamic views count running on TikTok API
-4)  mobile users can run it
-
+```
+  1.  fast, easy
+  2.  lightweight
+  3.  Has dynamic views count running on TikTok API
+  4.  mobile users can run it
+```
 To come:
-1) Proxy support
-2) Youtube Tutorial and better Documentation
-3) Bot using freer api so 2x faster (freer api is gay)
-
+```
+  1. Proxy support
+  2. Youtube Tutorial and better Documentation
+  3. Bot using freer api so 2x faster (freer api is gay)
+```
