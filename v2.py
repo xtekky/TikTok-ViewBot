@@ -1,5 +1,3 @@
-#MIGHT BE A BIT BUGGY BUT WORKS
-
 import os, requests, io, time, random, bs4, sys, datetime, re, base64, urllib.parse, json, threading, cursor
 from pystyle import *
 from PIL import Image
@@ -13,6 +11,7 @@ class Main:
         self.url   = 'https://zefoy.com/'
         self.session = requests.session()
         self.start = time.time()
+        self.videos = json.load(open('./config.json', 'r'))['videos']
     
     def format(self, symbol, text):
         return f"""                      {Col.Symbol(symbol, self.lblue, self.blue)} {self.lblue}{text}{Col.reset}"""
@@ -23,15 +22,27 @@ class Main:
         print(Colorate.Vertical(Colors.DynamicMIX((Col.light_blue, Col.cyan)), Center.XCenter(txt)))
 
     def title(self) -> None:
-        """_summary_
-        Title loop threaded for stats
-        """
+
         while True:
+            
             #speed = round((self.hits + self.fails)/(time.time() - self.start), 1)
             curr_time = str(datetime.timedelta(seconds=(time.time() - self.start))).split('.')[0]
-            
-            os.system(f'title [TikTok Viewbot] ^| Elapsed: {curr_time} ^| By tekky#1337')
-            time.sleep(0.2)
+            try:
+                views = requests.get(
+                    url = f"https://api.tiktokv.com/aweme/v1/multi/aweme/detail/?aweme_ids=%5B{self.videos[0]}%5D",
+                    headers = {
+                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36"
+                        }
+                ).json()["aweme_details"][0]["statistics"]["play_count"]
+                
+                os.system(f'title Tekky © 2022  x  Zviews ^| Views: {views} ^| Elapsed Time: {curr_time} ')
+                time.sleep(0.5)
+            except:
+                os.system(f'title Tekky © 2022  x  Zviews ^| Views: ERROR ^| Elapsed Time: {curr_time} ')
+                pass
+
+            # os.system(f'title [TikTok Viewbot] ^| Elapsed: {curr_time} ^| By tekky#1337')
+            # time.sleep(0.2)
     
     def solve_captcha(self, sessid):
 
@@ -116,7 +127,7 @@ class Main:
     def views_loop(self, sessid, alpha_key):
                 while True:
                     time.sleep(2)
-                    aweme_id = random.choice(json.load(open('./config.json', 'r'))['videos'])
+                    aweme_id = random.choice(self.videos)
                     
                     request = self.session.post(
                         self.url + "c2VuZC9mb2xsb3dlcnNfdGlrdG9V",
@@ -152,8 +163,7 @@ class Main:
                             print(self.format('@', f'Timer: {round((start + timer) - time.time())}       '), end="")
                             time.sleep(1)
                             
-                        #self._print(" [ * ] Sending views...")
-                        continue
+                        print(self.format('!', f'Sending views ...'));continue
 
                     soup = bs4.BeautifulSoup(decryped_answer, 'html.parser')
                     try:
@@ -178,7 +188,7 @@ class Main:
                     )
                     latency = round(time.time() - start, 2)
                     if latency > 3:
-                        print(self.format('!', 'Sent views !!'))
+                        print(self.format('!', f'Sent views [id={aweme_id}]'))
 
                     decrypted_response = self.decrypt(send_views.text)
                     
@@ -197,7 +207,7 @@ class Main:
                         time.sleep(1)
                     
                     print("\r", end="")
-                    print(self.format('!', f'Sending views !'))
+                    print(self.format('!', f'Sending views ...'))
 
     def main(self):
         threading.Thread(target=self.title).start()
@@ -209,4 +219,5 @@ class Main:
         
         self.views_loop(sessid, alpha_key)
 
-Main().main()
+if __name__ == '__main__':
+    Main().main()
