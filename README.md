@@ -22,7 +22,7 @@
 
 Requirements:
 1) Verify that you have pip and python installed => https://www.youtube.com/watch?v=dYfKJMPNMDw
-2) here are all the libs needed: requests, bs4, cursor, pystyle, pillow
+2) Run this command in cmd: pip install requests bs4 cursor pystyle pillow
 
 Advantages:
 1)  fast, easy
