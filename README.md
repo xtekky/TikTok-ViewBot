@@ -7,7 +7,7 @@
 -->
 
 <p align="center"> 
-<img src="https://cdn.discordapp.com/attachments/956638415837876284/994287361703825478/unknown.png?size=4096"></img>
+<img src="https://cdn.discordapp.com/attachments/956638415837876284/994399532001530007/unknown.png?size=4096?size=4096"></img>
 </p>
 
 
