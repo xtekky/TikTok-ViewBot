@@ -17,7 +17,7 @@
 
 > 100 stars = captcha solver
 
-> 150 stars = viewbot using freer api
+> 150 stars = viewbot using freer api (2x faster)
 
 > 200 stars = unpatched viewbot using real tiktok api
 
