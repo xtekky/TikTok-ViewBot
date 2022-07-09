@@ -1,6 +1,12 @@
+
 <p align="center">
-  PLEASE REPORT BUGS OR IDEAS TO: tekky#1337 / .gg/onlp
+100 stars = captcha solver
+</p><p align="center">
+150 stars = viewbot using freer api (2x faster)
+</p><p align="center">
+200 stars = unpatched viewbot using real tiktok api
 </p>
+
 
 <!--
 
@@ -13,14 +19,9 @@
 <p align="center"> 
 <img src="https://cdn.discordapp.com/attachments/956638415837876284/994399532001530007/unknown.png?size=4096?size=4096"></img>
 </p>
-
-
-> 100 stars = captcha solver
-
-> 150 stars = viewbot using freer api (2x faster)
-
-> 200 stars = unpatched viewbot using real tiktok api
-
+<p align="center">
+  PLEASE REPORT BUGS OR IDEAS TO: tekky#1337 / .gg/onlp
+</p>
 
 Requirements:
 ```
