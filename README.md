@@ -42,3 +42,17 @@ To come:
   2. Youtube Tutorial and better Documentation
   3. Bot using freer api so 2x faster (freer api is gay)
 ```
+Captcha Solver demo:
+```json
+{
+    "captcha":{
+        "answer": {
+            "text": "xxxxx",
+            "confidence": 0.999,
+        },
+        "solve_time": 0.144423,
+    },
+    "status_code": 0,
+    "status_msg": "captcha successfully solved",
+  }
+```
