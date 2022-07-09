@@ -54,5 +54,5 @@ Captcha Solver demo:
     },
     "status_code": 0,
     "status_msg": "captcha successfully solved",
-  }
+}
 ```
