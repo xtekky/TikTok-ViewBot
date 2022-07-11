@@ -1,5 +1,5 @@
 <p align="center">
-imagine not liking 😤
+imagine not starring 😤
 </p>
 
 <p align="center"> 
