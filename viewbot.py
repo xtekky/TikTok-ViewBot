@@ -27,7 +27,6 @@ class Main:
 
         while True:
             
-            #speed = round((self.hits + self.fails)/(time.time() - self.start), 1)
             curr_time = str(datetime.timedelta(seconds=(time.time() - self.start))).split('.')[0]
             try:
                 views = requests.get(
@@ -42,13 +41,10 @@ class Main:
             except:
                 os.system(f'title Tekky © 2022  x  Zviews ^| Views: ERROR ^| Elapsed Time: {curr_time} ')
                 pass
-
-            # os.system(f'title [TikTok Viewbot] ^| Elapsed: {curr_time} ^| By tekky#1337')
-            # time.sleep(0.2)
     
     def solve_captcha(self, sessid):
 
-        #get captcha image
+        # -- get captcha image --
         response = self.session.get(
             self.url  + "a1ef290e2636bf553f39817628b6ca49.php",
             headers={
