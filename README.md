@@ -24,7 +24,7 @@ imagine not starring 😤 (added solver !!)
 -->
 
 <p align="center"> 
-<img src="https://cdn.discordapp.com/attachments/956638415837876284/994399532001530007/unknown.png?size=4096?size=4096"></img>
+<img src="https://cdn.discordapp.com/attachments/979095432682676264/996481048605106186/unknown.png"></img>
 </p>
 <p align="center">
   PLEASE REPORT BUGS OR IDEAS TO: tekky#1337 / .gg/onlp
