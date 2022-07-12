@@ -1,5 +1,5 @@
 <p align="center">
-imagine not starring 😤 (I will add solver within 3h)
+imagine not starring 😤 (added solver !!)
 </p>
 
 <p align="center"> 
@@ -7,7 +7,7 @@ imagine not starring 😤 (I will add solver within 3h)
 </p>
 
 <p align="center">
-100 stars = captcha solver
+<del>100 stars = captcha solver</del>
 </p><p align="center">
 150 stars = viewbot using freer api (2x faster)
 </p><p align="center">
@@ -49,17 +49,12 @@ To come:
   2. Youtube Tutorial and better Documentation
   3. Bot using freer api so 2x faster (freer api is gay)
 ```
-Captcha Solver demo:
-```json
-{
-    "captcha":{
-        "answer": {
-            "text": "xxxxx",
-            "confidence": 0.999,
-        },
-        "solve_time": 0.144423,
-    },
-    "status_code": 0,
-    "status_msg": "captcha successfully solved",
-}
+Captcha OCR Solver:
+```
+ url: https://api.xtekky.com/ocr
+ method: post
+ json data: 
+ {
+    "image": "base64 encoded string"
+ }
 ```
