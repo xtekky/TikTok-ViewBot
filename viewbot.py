@@ -5,7 +5,7 @@ from pystyle import *
 from PIL import Image
 
 class Main:
-    def __init__(self) -> None:
+    def __init__(self):
         cursor.hide()
         
         self.blue  = Col.light_blue
@@ -23,7 +23,7 @@ class Main:
         txt = """\n██╗   ██╗██╗███████╗██╗    ██╗██████╗  ██████╗ ████████╗\n██║   ██║██║██╔════╝██║    ██║██╔══██╗██╔═══██╗╚══██╔══╝\n██║   ██║██║█████╗  ██║ █╗ ██║██████╔╝██║   ██║   ██║   \n╚██╗ ██╔╝██║██╔══╝  ██║███╗██║██╔══██╗██║   ██║   ██║   \n ╚████╔╝ ██║███████╗╚███╔███╔╝██████╔╝╚██████╔╝   ██║   \n  ╚═══╝  ╚═╝╚══════╝ ╚══╝╚══╝ ╚═════╝  ╚═════╝    ╚═╝\n                   By &! Tekky#1337\n\n\n\n\n"""
         print(Colorate.Vertical(Colors.DynamicMIX((Col.light_blue, Col.cyan)), Center.XCenter(txt)))
 
-    def title(self) -> None:
+    def title(self):
 
         while True:
             
