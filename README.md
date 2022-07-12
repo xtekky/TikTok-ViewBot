@@ -3,7 +3,7 @@ imagine not starring 😤 (added solver !!)
 </p>
 
 <p align="center"> 
-<img src="https://user-images.githubusercontent.com/98614666/178341592-5afc7a3c-8f7f-4ae3-9ab1-93a7b5227d1e.png"></img>
+<img src="https://user-images.githubusercontent.com/98614666/178567469-654df0d3-7d5a-4ec2-a5d8-53e76001e2ad.png"></img>
 </p>
 
 <p align="center">
