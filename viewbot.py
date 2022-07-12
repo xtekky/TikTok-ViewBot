@@ -86,8 +86,8 @@ class Main:
 
             return alpha_key
         except Exception as e:
-            print(self.format("!", e)
-            print(self.format("!", "Captcha Invalid | Check access to Zefoy"))
+            print(self.format("!", "Error: " + e)
+            print(self.format("!", "Captcha Invalid | Check access to Zefoy | xtekky.com may be down"))
             self.solve_captcha(sessid)
 
     def get_sessid(self):
