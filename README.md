@@ -50,11 +50,17 @@ To come:
   3. Bot using freer api so 2x faster (freer api is gay)
 ```
 Captcha OCR Solver:
-```
- url: https://api.xtekky.com/ocr
- method: post
- json data: 
- {
-    "image": "base64 encoded string"
- }
+```python
+import requests, json
+
+with open("captcha.png", "rb") as _:
+    image_bytes = _.read()
+
+req = requests.post(
+    url = "https://api.xtekky.com/ocr",
+    json = {
+        "image": base64.b64encode(image_bytes).decode()
+    }
+)
+print(json.dumps(req.json, indent=4))
 ```
