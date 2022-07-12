@@ -1,5 +1,5 @@
 <p align="center">
-imagine not starring 😤
+imagine not starring 😤 (I will add solver within 3h)
 </p>
 
 <p align="center"> 
