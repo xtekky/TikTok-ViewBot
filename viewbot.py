@@ -20,7 +20,7 @@ class Main:
     
     def gui(self):
         os.system('cls' if os.name == 'nt' else 'clear')
-        txt = """\n██╗   ██╗██╗███████╗██╗    ██╗██████╗  ██████╗ ████████╗\n██║   ██║██║██╔════╝██║    ██║██╔══██╗██╔═══██╗╚══██╔══╝\n██║   ██║██║█████╗  ██║ █╗ ██║██████╔╝██║   ██║   ██║   \n╚██╗ ██╔╝██║██╔══╝  ██║███╗██║██╔══██╗██║   ██║   ██║   \n ╚████╔╝ ██║███████╗╚███╔███╔╝██████╔╝╚██████╔╝   ██║   \n  ╚═══╝  ╚═╝╚══════╝ ╚══╝╚══╝ ╚═════╝  ╚═════╝    ╚═╝\n                     By tekky#1337\n\n\n\n\n"""
+        txt = """\n██╗   ██╗██╗███████╗██╗    ██╗██████╗  ██████╗ ████████╗\n██║   ██║██║██╔════╝██║    ██║██╔══██╗██╔═══██╗╚══██╔══╝\n██║   ██║██║█████╗  ██║ █╗ ██║██████╔╝██║   ██║   ██║   \n╚██╗ ██╔╝██║██╔══╝  ██║███╗██║██╔══██╗██║   ██║   ██║   \n ╚████╔╝ ██║███████╗╚███╔███╔╝██████╔╝╚██████╔╝   ██║   \n  ╚═══╝  ╚═╝╚══════╝ ╚══╝╚══╝ ╚═════╝  ╚═════╝    ╚═╝\n                   By &! Tekky#1337\n\n\n\n\n"""
         print(Colorate.Vertical(Colors.DynamicMIX((Col.light_blue, Col.cyan)), Center.XCenter(txt)))
 
     def title(self) -> None:
@@ -42,67 +42,52 @@ class Main:
                 os.system(f'title Tekky © 2022  x  Zviews ^| Views: ERROR ^| Elapsed Time: {curr_time}')
                 pass
     
-    def solve_captcha(self, sessid):
-
-        # -- get captcha image --
-        response = self.session.get(
-            self.url  + "a1ef290e2636bf553f39817628b6ca49.php",
-            headers={
-                "origin": "https://zefoy.com",
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36",
-                "x-requested-with": "XMLHttpRequest",
-                "cookie": f"PHPSESSID={sessid}",
-            },
-            params={
-                "_CAPTCHA": "",
-                "t": f"{round(random.random(), 8)} {int(time.time())}"
-            }
-        )
+    def solve_captcha(self, sessid):   
         try:
-            image = Image.open(io.BytesIO(response.content))
-        except:
-            input(self.format('!', 'Zefoy is returning and invalid captcha, please check VPN (press ENTER to restart)'))
-            os.system(f'python {sys.argv[0]}')
-            os._exit()
+            # -- get captcha image --
+            response = self.session.get(
+                self.url  + "a1ef290e2636bf553f39817628b6ca49.php",
+                headers={
+                    "origin": "https://zefoy.com",
+                    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36",
+                    "x-requested-with": "XMLHttpRequest",
+                    "cookie": f"PHPSESSID={sessid}",
+                },
+                params={
+                    "_CAPTCHA": "",
+                    "t": f"{round(random.random(), 8)} {int(time.time())}"
+                }
+            )
 
-        image.show()
-        
-        captcha_answer = input(self.format('?', 'Solve Captcha > ')) #;print('\n')
-        
-        #submit response
-        _response = self.session.post(
-            self.url,
-            data={
-                "captcha_secure": captcha_answer,
-                "r75619cf53f5a5d7aa6af82edfec3bf0": ""
-            },
-            headers={
-                "cookie": f"PHPSESSID={sessid}",
-                "origin": "https://zefoy.com",
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36",
-                "x-requested-with": "XMLHttpRequest"
-            }
-        )
+            req = requests.post(
+                url = "https://api.xtekky.com/ocr",
+                json = {
+                    "image": base64.b64encode(response.content).decode()
+                }
+            )
+            captcha_answer = req.json()['captcha']['answer']
+            
+            #submit response
+            _response = self.session.post(
+                self.url,
+                data={
+                    "captcha_secure": captcha_answer,
+                    "r75619cf53f5a5d7aa6af82edfec3bf0": ""
+                },
+                headers={
+                    "cookie": f"PHPSESSID={sessid}",
+                    "origin": "https://zefoy.com",
+                    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36",
+                    "x-requested-with": "XMLHttpRequest"
+                }
+            )
+            alpha_key = re.findall('(?<=")[a-z0-9]{16}', _response.text)[0]
+            print(self.format("!", f"Solved captcha ! | {captcha_answer}"))
 
-        try:
-            alpha_key = bs4.BeautifulSoup(_response.text, 'html.parser').find(
-                "div", 
-                {
-                    "id": "sid4"
-                    }
-                ).find(
-                    "input", 
-                    {
-                        "class": "form-control text-center font-weight-bold rounded-0"
-                        }
-                    ).get(
-                        "name"
-                        )
             return alpha_key
         except:
-            input(self.format('!', 'Wrong Captcha Key !'))
-            os.system(f'python {sys.argv[0]}')
-            os._exit()
+            print(self.format("!", "Failed to solve captcha, if this error occurs again, check VPN"))
+            self.solve_captcha(sessid)
 
     def get_sessid(self):
         sessid = self.session.get(
