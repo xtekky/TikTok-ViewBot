@@ -36,7 +36,7 @@ class Main:
                         }
                 ).json()["aweme_details"][0]["statistics"]["play_count"]
                 
-                os.system(f'title Tekky © 2022  x  Zviews ^| Views: {views} ^| Elapsed Time: {curr_time}')
+                os.system(f'title Tekky © 2022  x  Zviews ^| Views: {views} ^| Elapsed Time: {curr_time} ')
                 time.sleep(0.5)
             except:
                 os.system(f'title Tekky © 2022  x  Zviews ^| Views: ERROR ^| Elapsed Time: {curr_time}')
