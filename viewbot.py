@@ -85,7 +85,8 @@ class Main:
             print(self.format("!", f"Solved captcha ! | {captcha_answer}"))
 
             return alpha_key
-        except:
+        except Exception as e:
+            print(self.format("!", e)
             print(self.format("!", "Captcha Invalid | Check access to Zefoy"))
             self.solve_captcha(sessid)
 
