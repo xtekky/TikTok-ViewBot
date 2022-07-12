@@ -86,7 +86,7 @@ class Main:
 
             return alpha_key
         except:
-            print(self.format("!", "Failed to solve captcha, if this error occurs again, check VPN"))
+            print(self.format("!", "Captcha Invalid | Check access to Zefoy"))
             self.solve_captcha(sessid)
 
     def get_sessid(self):
