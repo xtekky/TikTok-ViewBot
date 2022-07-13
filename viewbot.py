@@ -24,6 +24,8 @@ class Main:
         print(Colorate.Vertical(Colors.DynamicMIX((Col.light_blue, Col.cyan)), Center.XCenter(txt)))
 
     def title(self):
+        if os.system != 'nt':
+            return
 
         while True:
             
@@ -36,10 +38,10 @@ class Main:
                         }
                 ).json()["aweme_details"][0]["statistics"]["play_count"]
                 
-                os.system(f'title Tekky © 2022  x  Zviews ^| Views: {views} ^| Elapsed Time: {curr_time} ^| v2.1')
+                os.system(f'title Tekky © 2022  x  Zviews ^| Views: {views} ^| Elapsed Time: {curr_time} ^| v2.1' if os.name == 'nt' else '')
                 time.sleep(0.5)
             except:
-                os.system(f'title Tekky © 2022  x  Zviews ^| Views: ERROR ^| Elapsed Time: {curr_time} ^| v2.1')
+                os.system(f'title Tekky © 2022  x  Zviews ^| Views: ERROR ^| Elapsed Time: {curr_time} ^| v2.1' if os.name == 'nt' else '')
                 pass
     
     def solve_captcha(self, sessid):   
