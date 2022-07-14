@@ -62,8 +62,8 @@ class Main:
             )
 
             req = requests.post(
-                url = "https://api.xtekky.com/ocr",
-                json = {
+                url = "https://api.xtekky.com/ocr/v2",
+                data = {
                     "image": base64.b64encode(response.content).decode()
                 }
             )
