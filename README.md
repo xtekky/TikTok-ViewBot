@@ -9,9 +9,9 @@ imagine not starring 😤 <b>(added solver !!)</b>
 <p align="center">
 <del>100 stars = captcha solver</del>
 </p><p align="center">
-150 stars = viewbot using freer api (2x faster)
+200 stars = viewbot using freer api (2x faster)
 </p><p align="center">
-200 stars = unpatched viewbot using real tiktok api
+500 stars = unpatched viewbot using real tiktok api
 </p>
 
 
