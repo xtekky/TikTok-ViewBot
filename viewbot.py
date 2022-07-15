@@ -118,89 +118,93 @@ class Main:
         return int(timer)
     
     def views_loop(self, sessid, alpha_key):
-                while True:
-                    time.sleep(2)
-                    aweme_id = random.choice(self.videos)
-                    
-                    request = self.session.post(
-                        self.url + str(self.mode),
-                        headers={
-                            "cookie": f"PHPSESSID={sessid}",
-                            "origin": "https://zefoy.com",
-                            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36",
-                            "x-requested-with": "XMLHttpRequest"
-                        },
-                        data={
-                            alpha_key: f"https://www.tiktok.com/@onlp/video/{aweme_id}"
-                        }
-                    )
-                    decryped_answer = self.decrypt(request.text)
+        while True:
+            try:
+                time.sleep(2)
+                aweme_id = random.choice(self.videos)
+                
+                request = self.session.post(
+                    self.url + str(self.mode),
+                    headers={
+                        "cookie": f"PHPSESSID={sessid}",
+                        "origin": "https://zefoy.com",
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36",
+                        "x-requested-with": "XMLHttpRequest"
+                    },
+                    data={
+                        alpha_key: f"https://www.tiktok.com/@onlp/video/{aweme_id}"
+                    }
+                )
+                decryped_answer = self.decrypt(request.text)
 
-                    if 'This service is currently not working' in decryped_answer:
-                        print(self.format('x', 'Views not available in the moment'))
-                        input();sys.exit()
+                if 'This service is currently not working' in decryped_answer:
+                    print(self.format('x', 'Views not available in the moment'))
+                    input();sys.exit()
 
-                    elif 'Server too busy' in decryped_answer:
-                        print(self.format('x', 'Server busy ! (waiting 10s)'))
-                        time.sleep(10);continue
+                elif 'Server too busy' in decryped_answer:
+                    print(self.format('x', 'Server busy ! (waiting 10s)'))
+                    time.sleep(10);continue
 
-                    elif 'function updatetimer()' in decryped_answer:
-                        print("\r", end="")
-                        timer = self.decrypt_timer(decryped_answer)
+                elif 'function updatetimer()' in decryped_answer:
+                    print("\r", end="")
+                    timer = self.decrypt_timer(decryped_answer)
 
-                        print(self.format('@', f"Timer: {timer}     "), end="")
-                        start = time.time()
-                        
-                        while time.time() < start + timer:
-                            print("\r", end="")
-                            print(self.format('@', f'Timer: {round((start + timer) - time.time())}       '), end="")
-                            time.sleep(1)
-                            
-                        print(self.format('!', f'Sending views ...'));continue
-
-                    soup = bs4.BeautifulSoup(decryped_answer, 'html.parser')
-                    try:
-                        beta_key = soup.find("input", {"type": "text"}).get("name")
-                    except:
-                        input(decryped_answer);sys.exit()
-
-                    time.sleep(1)
-                    
+                    print(self.format('@', f"Timer: {timer}     "), end="")
                     start = time.time()
-                    send_views = requests.post(
-                        self.url + str(self.mode),
-                        headers={
-                            "cookie": f"PHPSESSID={sessid}",
-                            "origin": "https://zefoy.com",
-                            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36",
-                            "x-requested-with": "XMLHttpRequest"
-                        },
-                        data={
-                            beta_key: aweme_id
-                        }
-                    )
-                    latency = round(time.time() - start, 2)
-                    if latency > 3:
-                        print(self.format('!', f'Sent views [id={aweme_id}]'))
-
-                    decrypted_response = self.decrypt(send_views.text)
                     
-                    if 'Too many requests. Please slow down.' in decrypted_response:
-                        print(self.format('x', "Ratelimited"))
-                        time.sleep(120);continue
-                        
-                    timer = self.decrypt_timer(decrypted_response)
-
-                    print(self.format('@', f"Timer: {timer}    "), end="")
-                    start = time.time()
-
                     while time.time() < start + timer:
                         print("\r", end="")
-                        print(self.format('@', f'Timer: {round((start + timer) - time.time())}     '), end="")
+                        print(self.format('@', f'Timer: {round((start + timer) - time.time())}       '), end="")
                         time.sleep(1)
+                        
+                    print(self.format('!', f'Sending views/shares ...'));continue
+
+                soup = bs4.BeautifulSoup(decryped_answer, 'html.parser')
+                try:
+                    beta_key = soup.find("input", {"type": "text"}).get("name")
+                except:
+                    input(decryped_answer);sys.exit()
+
+                time.sleep(1)
+                
+                start = time.time()
+                send_views = requests.post(
+                    self.url + str(self.mode),
+                    headers={
+                        "cookie": f"PHPSESSID={sessid}",
+                        "origin": "https://zefoy.com",
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36",
+                        "x-requested-with": "XMLHttpRequest"
+                    },
+                    data={
+                        beta_key: aweme_id
+                    }
+                )
+                latency = round(time.time() - start, 2)
+                if latency > 3:
+                    print(self.format('!', f'Sent views/shares [id={aweme_id}]'))
+
+                decrypted_response = self.decrypt(send_views.text)
+                
+                if 'Too many requests. Please slow down.' in decrypted_response:
+                    print(self.format('x', "Ratelimited"))
+                    time.sleep(120);continue
                     
+                timer = self.decrypt_timer(decrypted_response)
+
+                print(self.format('@', f"Timer: {timer}    "), end="")
+                start = time.time()
+
+                while time.time() < start + timer:
                     print("\r", end="")
-                    print(self.format('!', f'Sending views ...'))
+                    print(self.format('@', f'Timer: {round((start + timer) - time.time())}     '), end="")
+                    time.sleep(1)
+                
+                print("\r", end="")
+                print(self.format('!', f'Sending views/shares ...'))
+            except:
+                os.system('python viewbot.py')
+                sys.exit()
 
     def main(self):
         threading.Thread(target=self.title).start()
