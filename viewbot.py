@@ -8,12 +8,14 @@ class Main:
     def __init__(self):
         cursor.hide()
         
-        self.blue  = Col.light_blue
-        self.lblue = Colors.StaticMIX((Col.light_blue, Col.white, Col.white))
-        self.url   = 'https://zefoy.com/'
+        self.blue    = Col.light_blue
+        self.lblue   = Colors.StaticMIX((Col.light_blue, Col.white, Col.white))
+        self.url     = 'https://zefoy.com/'
         self.session = requests.session()
-        self.start = time.time()
-        self.videos = json.load(open('./config.json', 'r'))['videos']
+        self.start   = time.time()
+        self.config  = json.load(open('./config.json', 'r'))
+        self.videos  = self.config['videos']
+        self.mode    = 'c2VuZC9mb2xsb3dlcnNfdGlrdG9s' if self.config['shares'] is True else "c2VuZC9mb2xsb3dlcnNfdGlrdG9V"
     
     def format(self, symbol, text):
         return f"""                      {Col.Symbol(symbol, self.lblue, self.blue)} {self.lblue}{text}{Col.reset}"""
@@ -121,7 +123,7 @@ class Main:
                     aweme_id = random.choice(self.videos)
                     
                     request = self.session.post(
-                        self.url + "c2VuZC9mb2xsb3dlcnNfdGlrdG9V",
+                        self.url + str(self.mode),
                         headers={
                             "cookie": f"PHPSESSID={sessid}",
                             "origin": "https://zefoy.com",
@@ -166,7 +168,7 @@ class Main:
                     
                     start = time.time()
                     send_views = requests.post(
-                        self.url + "c2VuZC9mb2xsb3dlcnNfdGlrdG9V",
+                        self.url + str(self.mode),
                         headers={
                             "cookie": f"PHPSESSID={sessid}",
                             "origin": "https://zefoy.com",
