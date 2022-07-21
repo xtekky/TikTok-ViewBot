@@ -9,7 +9,9 @@
 </p><p align="center">
 170 stars = open source solver
 </p><p align="center">
-200 stars = viewbot using freer api (2x faster)
+200 stars = viewbot in golang + proxy support + bot multiple videos same time
+</p><p align="center">
+250 stars = viewbot using freer api (2x faster)
 </p><p align="center">
 500 stars = unpatched viewbot using real tiktok api
 </p>
