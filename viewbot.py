@@ -35,7 +35,12 @@ class Main:
         while True:
 
             curr_time = str(
-                datetime.timedelta(seconds=(time.time() - self.start))
+                datetime.timedelta(
+                    seconds = (
+                        time.time() 
+                        - self.start
+                    )
+                )
             ).split(".")[0]
             try:
                 views = requests.get(
