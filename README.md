@@ -7,6 +7,8 @@
 <p align="center">
 <del>100 stars = captcha solver</del>
 </p><p align="center">
+170 stars = open source solver
+</p><p align="center">
 200 stars = viewbot using freer api (2x faster)
 </p><p align="center">
 500 stars = unpatched viewbot using real tiktok api
