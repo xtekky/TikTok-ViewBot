@@ -81,13 +81,43 @@ class Main:
                 },
             )
 
-            req = requests.post(
-                url="https://api.xtekky.com/ocr/v2",
-                data={"image": base64.b64encode(response.content).decode()},
-            )
-            captcha_answer = req.json()["captcha"]["answer"]
+            json_data =  {
+                "requests": [{
+                    "image": {
+                        "content": str(base64.b64encode(response.content).decode())
+                    },
+                    "features": [{"type": "TEXT_DETECTION"}]
+                }]
+            }
 
-            # submit response
+            req = requests.post(
+                url = 'https://content-vision.googleapis.com/v1/images:annotate',
+                headers = {
+                    'x-origin': 'https://explorer.apis.google.com',
+                },
+                params = {
+                    'alt': 'json',
+                    'key': 'AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM',
+                },
+                json = json_data
+            )
+
+            captcha_answer = req.json()['responses'][0]["textAnnotations"][0]["description"]
+
+            if captcha_answer == "" or captcha_answer is None:
+                self.solve_captcha(sessid)
+            
+            captcha_answer = re.compile('[^a-zA-Z]').sub('', captcha_answer).lower()
+
+                # d = enchant.Dict("en_US")
+                # if d.check(captcha_answer) == True:
+                #     pass
+                # else:
+                #     try:
+                #         captcha_answer = d.suggest(captcha_answer)[0]
+                #     except:
+                #         self.solve_captcha(sessid)
+
             _response = self.session.post(
                 self.url,
                 data={
@@ -247,3 +277,4 @@ class Main:
 
 if __name__ == "__main__":
     Main().main()
+
