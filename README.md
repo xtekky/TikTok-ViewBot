@@ -7,7 +7,7 @@
 <p align="center">
 <del>100 stars = captcha solver</del>
 </p><p align="center">
-170 stars = open source solver
+<del>170 stars = open source solver</del>
 </p><p align="center">
 200 stars = viewbot in golang + proxy support + bot multiple videos same time
 </p><p align="center">
