@@ -1,8 +1,5 @@
 <h2 align="center">SERVER GOT TERMED JOIN NEW ONE <a href="https://discord.gg/fs6V94d8">https://discord.gg/xtwich</a></h2>
 
-<p align="center"> 
-<img src="https://user-images.githubusercontent.com/98614666/178567469-654df0d3-7d5a-4ec2-a5d8-53e76001e2ad.png"></img>
-</p>
 
 <p align="center">
 <del>100 stars = captcha solver</del>
