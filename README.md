@@ -1,4 +1,7 @@
-<h2 align="center">SERVER GOT TERMED JOIN NEW ONE <a href="https://discord.gg/fs6V94d8">https://discord.gg/xtwich</a></h2>
+
+<h2 align="center">server: <a href="https://discord.gg/xtwitch">discord.gg/xtwich</a></h2>
+<h2 align="center">tutorial: <a href="https://www.youtube.com/watch?v=x97aLsPSJtQ">youtube.com/watch?v=x97aLsPSJtQ</a></h2>
+
 
 
 <p align="center">
@@ -47,6 +50,5 @@ Advantages:
 To come:
 ```
   1. Proxy support
-  2. Youtube Tutorial and better Documentation
   3. Bot using freer api so 2x faster (freer api is gay)
 ```
