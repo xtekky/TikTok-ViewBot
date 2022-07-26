@@ -29,11 +29,33 @@ class Main:
                 },
             )
 
+           json_data =  {
+                "requests": [{
+                    "image": {
+                        "content": str(base64.b64encode(response.content).decode())
+                    },
+                    "features": [{"type": "TEXT_DETECTION"}]
+                }]
+            }
+
             req = requests.post(
-                url="https://api.xtekky.com/ocr/v2",
-                data={"image": base64.b64encode(response.content).decode()},
+                url = 'https://content-vision.googleapis.com/v1/images:annotate',
+                headers = {
+                    'x-origin': 'https://explorer.apis.google.com',
+                },
+                params = {
+                    'alt': 'json',
+                    'key': 'AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM',
+                },
+                json = json_data
             )
-            captcha_answer = req.json()["captcha"]["answer"]
+
+            captcha_answer = req.json()['responses'][0]["textAnnotations"][0]["description"]
+
+            if captcha_answer == "" or captcha_answer is None:
+                self.solve_captcha(sessid)
+            
+            captcha_answer = re.compile('[^a-zA-Z]').sub('', captcha_answer).lower()
 
             # submit response
             _response = self.session.post(
