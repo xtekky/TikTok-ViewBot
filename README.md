@@ -9,7 +9,7 @@
 </p><p align="center">
 <del>170 stars = open source solver</del>
 </p><p align="center">
-200 stars = viewbot in golang + proxy support + bot multiple videos same time
+200 stars = viewbot in golang + proxy support + bot multiple videos same time (SOON)
 </p><p align="center">
 250 stars = viewbot using freer api (2x faster)
 </p><p align="center">
