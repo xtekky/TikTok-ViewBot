@@ -1,1 +1,1 @@
-Zefoy bot in golang 70% finished (faster) 
+Zefoy bot in golang 70% finished (faster)  
