@@ -26,9 +26,6 @@
 <p align="center"> 
 <img src="https://cdn.discordapp.com/attachments/979095432682676264/996481048605106186/unknown.png"></img>
 </p>
-<p align="center">
-  PLEASE REPORT BUGS OR IDEAS TO: tekky#1337 / .gg/onlp
-</p>
 
 How to run:
 ```
