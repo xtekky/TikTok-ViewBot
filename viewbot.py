@@ -1,6 +1,6 @@
 #!usr/bin/env python
 #-*- coding:utf-8 -*-
-
+ 
 """
 @author: &! Tekky#1337
 @file: viewbot.py
