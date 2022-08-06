@@ -1,3 +1,6 @@
+
+<h2 align="center">server: <a href="https://discord.gg/xtwitch">discord.gg/xtwich</a></h2>
+
 <p align="center">
 300 followers / 400 stars = leaked unpatched viewbot 1k/s
 </p>
@@ -7,7 +10,6 @@ https://user-images.githubusercontent.com/98614666/182040527-2c72dd31-1c4a-4e49-
 
 &emsp;
 
-<h2 align="center">server: <a href="https://discord.gg/xtwitch">discord.gg/xtwich</a></h2>
 <h2 align="center">tutorial: <a href="https://www.youtube.com/watch?v=x97aLsPSJtQ">youtube.com/watch?v=x97aLsPSJtQ</a></h2>
 
 <!--
