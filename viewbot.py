@@ -1,39 +1,36 @@
-#!usr/bin/env python
+
 #-*- coding:utf-8 -*-
- 
+"#!usr/bin/env python"
 """
 @author: &! Tekky#1337
 @file: viewbot.py
 @time: 2024/07/29
 """
-
-import os, requests, io, time, random, bs4, sys, datetime, re, base64, urllib.parse, json, threading, cursor
+from colorama import Fore, Back, Style
+import os, requests, io, time, random, bs4, sys, datetime, re, base64, urllib.parse, json, threading
 from pystyle import *
 from PIL import Image
 
+jsonobj = json.loads(open("config.json", "r").read())
 
 class Main:
     def __init__(self):
-        cursor.hide()
 
-        self.blue = Col.light_blue
-        self.lblue = Colors.StaticMIX((Col.light_blue, Col.white, Col.white))
+
+        self.blue = ""#Col.light_blue
+        self.lblue = ""#Colors.StaticMIX((Col.light_blue, Col.white, Col.white))
         self.url = "https://zefoy.com/"
         self.session = requests.session()
         self.start = time.time()
-        self.videos = json.load(open("./config.json", "r"))["videos"]
+        
+        self.videos = jsonobj["videos"]
 
     def format(self, symbol, text):
-        return f"""                      {Col.Symbol(symbol, self.lblue, self.blue)} {self.lblue}{text}{Col.reset}"""
+        return f"""{Fore.GREEN}INFO{Fore.RESET} | {text}"""
 
     def gui(self):
         os.system("cls" if os.name == "nt" else "clear")
-        txt = """\n██╗   ██╗██╗███████╗██╗    ██╗██████╗  ██████╗ ████████╗\n██║   ██║██║██╔════╝██║    ██║██╔══██╗██╔═══██╗╚══██╔══╝\n██║   ██║██║█████╗  ██║ █╗ ██║██████╔╝██║   ██║   ██║   \n╚██╗ ██╔╝██║██╔══╝  ██║███╗██║██╔══██╗██║   ██║   ██║   \n ╚████╔╝ ██║███████╗╚███╔███╔╝██████╔╝╚██████╔╝   ██║   \n  ╚═══╝  ╚═╝╚══════╝ ╚══╝╚══╝ ╚═════╝  ╚═════╝    ╚═╝\n                   By &! Tekky#1337\n\n\n\n\n"""
-        print(
-            Colorate.Vertical(
-                Colors.DynamicMIX((Col.light_blue, Col.cyan)), Center.XCenter(txt)
-            )
-        )
+        
 
     def title(self):
         if os.system != "nt":
@@ -177,6 +174,7 @@ class Main:
 
     def views_loop(self, sessid, alpha_key):
         while True:
+            print(self.videos)
             try:
                 time.sleep(2)
                 aweme_id = random.choice(self.videos)
