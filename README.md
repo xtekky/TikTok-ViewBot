@@ -1,4 +1,5 @@
-#### Selling unpatched Viewbot: https://onlp.sellix.io/ !! (btc, eth), open ticket in server if u want to use paypal, 50€ 1k/s
+#### Selling unpatched Viewbot: https://onlp.sellix.io/ !! (btc, eth)
+#### 50€ 1k/s
 
 
 <h2 align="center">server: <a href="https://discord.gg/xtwitch">discord.gg/xtwich</a></h2>
