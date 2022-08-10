@@ -1,4 +1,4 @@
-#### Selling unpatched Viewbot: https://onlp.sellix.io/ !! (btc, eth)
+#### Selling unpatched Viewbot: https://onlp.sellix.io/
 #### 50€ 1k/s
 
 
