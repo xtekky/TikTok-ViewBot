@@ -1,4 +1,4 @@
-#### Paid unpatched viewbot for 25€ !!: https://onlp.sellix.io or in https://discord.gg/xtwitch
+#### Paid unpatched viewbot for 25€ !!: https://onlp.sellix.io or in dc server
 
 
 <h2 align="center">server: <a href="https://discord.gg/xtwitch">discord.gg/xtwich</a></h2>
