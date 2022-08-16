@@ -50,10 +50,16 @@ class Main:
                 )
             ).split(".")[0]
             try:
-                views = requests.get(
-                    url=f"https://api.tiktokv.com/aweme/v1/multi/aweme/detail/?aweme_ids=%5B{self.videos[0]}%5D",
-                    headers={
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36"
+                views = requests.post(
+                    url = (
+                        "https://api16-va.tiktokv.com/tiktok/v1/videos/detail/" 
+                            + "?"
+                            + "aweme_ids=%5B{video}%5D&device_type=SM-G973N&app_name=musical_ly&channel=googleplay&device_platform=android&version_code=190303&os_version=7.1.2&aid=1233".format(
+                                self.videos[0]
+                         )
+                    ),
+                    headers = {
+                        "x-gorgon": "0",
                     },
                 ).json()["aweme_details"][0]["statistics"]["play_count"]
 
