@@ -147,7 +147,7 @@ class Main:
             print(
                 self.format(
                     "!",
-                    "Captcha Invalid | Check access to Zefoy | xtekky.com may be down",
+                    "Captcha Invalid | Check access to Zefoy",
                 )
             )
             self.solve_captcha(sessid)
