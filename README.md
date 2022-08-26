@@ -3,10 +3,11 @@
 
 <h2 align="center">server: <a href="https://discord.gg/onlp">discord.gg/onlp</a></h2>
 
+<--
 <p align="center">
 400 followers / 500 stars = leaked unpatched viewbot 1k/s
 </p>
-
+-->
  
 https://user-images.githubusercontent.com/98614666/182040527-2c72dd31-1c4a-4e49-ade2-fa2f800d75e5.mp4
 
