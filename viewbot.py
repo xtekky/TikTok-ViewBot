@@ -2,7 +2,7 @@
 #-*- coding:utf-8 -*-
  
 """
-@author: &! Tekky#1337
+@author: &! Hld2K7
 @file: viewbot.py
 @time: 2024/07/29
 """
