@@ -29,7 +29,7 @@ class Main:
                 },
             )
 
-           json_data =  {
+           json_data = {
                 "requests": [{
                     "image": {
                         "content": str(base64.b64encode(response.content).decode())
