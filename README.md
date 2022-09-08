@@ -1,4 +1,4 @@
-#### Paid unpatched viewbot for 25€ !!: https://onlp.sellix.io or in dc server
+#### Paid unpatched viewbot for 19.99€ !!: https://onlp.sellix.io or in dc server
 
 
 <h2 align="center">server: <a href="https://discord.gg/onlp">discord.gg/onlp</a></h2>
