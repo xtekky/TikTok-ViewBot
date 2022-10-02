@@ -58,7 +58,7 @@ class Gorgon:
 	def reverse(self,num):tmp_string=self.hex_string(num);return int(tmp_string[1:]+tmp_string[:1],16)
 
 def send(did, iid, cdid, openudid):
-    global reqs, _lock
+    global reqs, _lock, success, fails
     
     for x in range(10):
         try:
@@ -74,13 +74,14 @@ def send(did, iid, cdid, openudid):
                 headers = {'cookie':'sessionid=90c38a59d8076ea0fbc01c8643efbe47','x-gorgon':sig['X-Gorgon'],'x-khronos':sig['X-Khronos'],'user-agent':'okhttp/3.10.0.1'},
                 verify  = False
             )
-            
+            reqs += 1
             try:
-                reqs += 1
                 _lock.acquire()
                 print(Colorate.Horizontal(Colors.green_to_white, f"+ - sent views {response.json()['log_pb']['impr_id']} {__aweme_id} {reqs}"))
                 _lock.release()
+                success += 1
             except:
+                fails += 1
                 continue
 
         except Exception as e:
@@ -95,10 +96,11 @@ def rpsm_loop():
         rpm = round(rps * 60, 1)
 
 def title_loop():
-    global rps, rpm
-    while True:
-        if os.name == "nt":
-            os.system(f'title TikTok Viewbot by @xtekky ^| reqs: {reqs} rps: {rps} rpm: {rpm}')
+    global rps, rpm, success, fails, reqs
+        
+    if os.name == "nt":
+        while True:
+            os.system(f'title TikTok Viewbot by @xtekky ^| success: {success} fails: {fails} reqs: {reqs} rps: {rps} rpm: {rpm}')
             time.sleep(0.1)
 
 if __name__ == "__main__":
@@ -129,8 +131,9 @@ if __name__ == "__main__":
     print("loading...")
     
     _lock = threading.Lock()
-
     reqs = 0
+    success = 0
+    fails = 0
     rpm = 0
     rps = 0
     
