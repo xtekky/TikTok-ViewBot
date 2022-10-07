@@ -66,13 +66,15 @@ def send(did, iid, cdid, openudid):
             payload = f"item_id={__aweme_id}&play_delta=1"
             sig     = Gorgon(params=params, cookies=None, data=None, unix=int(time.time())).get_value()
 
+            proxy = random.choice(proxies) if config['proxy']['use-proxy'] else ""
             response = requests.post(
                 url = (
                     "https://api16-va.tiktokv.com/aweme/v1/aweme/stats/?" + params
                 ),
                 data    = payload,
                 headers = {'cookie':'sessionid=90c38a59d8076ea0fbc01c8643efbe47','x-gorgon':sig['X-Gorgon'],'x-khronos':sig['X-Khronos'],'user-agent':'okhttp/3.10.0.1'},
-                verify  = False
+                verify  = False,
+                proxies = {"http": proxy_format+proxy, "https": proxy_format+proxy} if config['proxy']['use-proxy'] else {}
             )
             reqs += 1
             try:
@@ -81,6 +83,7 @@ def send(did, iid, cdid, openudid):
                 _lock.release()
                 success += 1
             except:
+                if _lock.locked():_lock.release()
                 fails += 1
                 continue
 
@@ -140,7 +143,16 @@ if __name__ == "__main__":
     threading.Thread(target=rpsm_loop).start()
     threading.Thread(target=title_loop).start()
 
-    devices = open('devices.txt', 'r').read().splitlines()
+    with open('devices.txt', 'r') as f:
+        devices = f.read().splitlines()
+    
+    with open('config.json', 'r') as f:
+        config = json.load(f)
+    proxy_format = f'{config["proxy"]["proxy-type"].lower()}://{config["proxy"]["credential"]+"@" if config["proxy"]["auth"] else ""}' if config['proxy']['use-proxy'] else ''
+    if config['proxy']['use-proxy']:
+        with open('proxies.txt', 'r') as f:
+            proxies = f.read().splitlines()
+    
     while True:
         device = random.choice(devices)
 

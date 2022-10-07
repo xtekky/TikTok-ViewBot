@@ -1,0 +1,17 @@
+{
+"_": "Proxy settings",
+"proxy": {
+"_": "Use proxy (Viewbot works without proxies)",
+"_": "true or false",
+    "use-proxy": false,
+
+"_": "Proxy type",
+"_": "socks5 or http",
+    "proxy-type": "http",
+
+"_": "Proxy user:pass auth",
+"_": "true or false",
+"_": "Credential format is USER:PASS",
+    "auth": false,
+    "credential": ""
+}}
