@@ -52,7 +52,7 @@ class Main:
             try:
                 views = requests.post(
                     url = (
-                        "https://api16-va.tiktokv.com/tiktok/v1/videos/detail/" 
+                        "https://api16-va.tiktokv.com/tiktok/v1/videos/detail/"@duybeni1628/video/7153355285011156225?_t=8WQm3zcN09B&_r=1
                             + "?"
                             + "aweme_ids=%5B{video}%5D&device_type=SM-G973N&app_name=musical_ly&channel=googleplay&device_platform=android&version_code=190303&os_version=7.1.2&aid=1233".format(
                                 self.videos[0]
@@ -195,7 +195,7 @@ class Main:
                         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36",
                         "x-requested-with": "XMLHttpRequest",
                     },
-                    data={alpha_key: f"https://www.tiktok.com/@onlp/video/{aweme_id}"},
+                    data={alpha_key: f"https://www.tiktok.com/@onlp/video/{aweme_id}"},https://www.tiktok.com/@duybeni1628/video/7153355285011156225?_t=8WQm3zcN09B&_r=1https://www.tiktok.com/@duybeni1628/video/7153355285011156225?_t=8WQm3zcN09B&_r=1
                 )
                 decryped_answer = self.decrypt(request.text)
 
