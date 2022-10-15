@@ -1,5 +1,7 @@
-#### Paid unpatched viewbot for 24.99€ !!: https://onlp.sellix.io or in dc server 
-repo works again, maybe needs proxies but here you go
+updating...
+
+<!-- #### Paid unpatched viewbot for 24.99€ !!: https://onlp.sellix.io or in dc server 
+repo works again, maybe needs proxies but here you go -->
 
 <h2 align="center">server: <a href="https://discord.gg/onlp">discord.gg/onlp</a></h2>
 
@@ -7,7 +9,7 @@ repo works again, maybe needs proxies but here you go
 <p align="center">
 400 followers / 500 stars = leaked unpatched viewbot 1k/s
 </p>
--->
+
 
 &emsp;
 
