@@ -199,7 +199,7 @@ class zefoy:
                         time_left = time_left + '  '
                     
                     print('            ' + zefoy.sprint('*', 'sleeping -', 'for ' + Col.white + time_left +  Col.blue +' seconds'),  end="\r"); sleep(1)
-                print('            ' + zefoy.sprint('*', 'sending  -', 'shares...'),  end="\r")
+                print('            ' + zefoy.sprint('*', 'sending  -', 'shares...                                  '),  end="\r")
                 print('')
                 self.__search_link(__tiktok_link)
 
