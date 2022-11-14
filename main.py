@@ -10,6 +10,8 @@ from os             import system, name, execv
 from sys            import executable, argv
 from hashlib        import sha256
 from threading      import Thread
+from PIL            import Image
+from io             import BytesIO
 
 proxies   = None # experimental
 endpoints = {
@@ -69,7 +71,7 @@ class zefoy:
         if name == 'nt':
             while True:
                 stats = livecounts.video_info(self.__item_id)
-                system('title Zefoy Bot by @xtekky ^| Likes: %s Views: %s Shares: %s ^| %s ^| mode: shares' % (
+                system('title Zefoy Bot by @xtekky ^| Likes: %s Views: %s Shares: %s ^| %s ^| mode: hearts' % (
                     stats['likeCount'], stats['viewCount'], stats['shareCount'], str(self.__item_id)
                 ))
                 
@@ -97,18 +99,18 @@ class zefoy:
 
     def __get_captcha(self) -> str: 
 
-        __captcha_image = self.__session.get("https://zefoy.com/a1ef290e2636bf553f39817628b6ca49.php", 
+        __captcha_image = self.__session.get("https://zefoy.com/a1ef290a2636bf553f39817628b6ca49.php", 
             headers = self.__base_headers(), 
             proxies = proxies,
             params  = {
                 "_CAPTCHA": "",
                 "t": f"{round(random(), 8)} {int(time())}"
         })
-        
-        return str(b64encode(__captcha_image.content).decode())
 
+        return str(b64encode(__captcha_image.content).decode())
+        #return __captcha_image.content
     
-    def __solve_captcha(self, __image_data: str) -> None:
+    def __solve_captcha(self, __image_data: str or bytes) -> None:
         response = self.__session.post('https://captcha.xtekky.repl.co/', json = {
             'captcha': __image_data
         })
@@ -116,10 +118,15 @@ class zefoy:
         if response.json()['status_code'] == 0:
             captcha_answer = response.json()['captcha_answer']
         
+        
         else:
             print('            ' + zefoy.sprint('x', 'error    -', str(response.json())))
             input('            ' + zefoy.sprint('*', 'restart  -', 'press ' + Col.white + 'enter'))
             execv(executable, ['python'] + argv)
+        
+        # image = Image.open(BytesIO(__image_data))
+        # image.show()
+        # captcha_answer = input('            ' + zefoy.sprint('*', 'captcha  -', 'enter captcha > '))
         
         try:
             response = self.__session.post("https://zefoy.com/", 
@@ -165,7 +172,7 @@ class zefoy:
     def __search_link(self, __tiktok_link: str) -> None:
         try:
             
-            __search_link = self.__session.post('https://zefoy.com/' + endpoints['shares'],
+            __search_link = self.__session.post('https://zefoy.com/' + endpoints['hearts'],
                 headers = self.__base_headers(),
                 proxies = proxies,
                 data = {
@@ -199,7 +206,7 @@ class zefoy:
                         time_left = time_left + '  '
                     
                     print('            ' + zefoy.sprint('*', 'sleeping -', 'for ' + Col.white + time_left +  Col.blue +' seconds'),  end="\r"); sleep(1)
-                print('            ' + zefoy.sprint('*', 'sending  -', 'shares...                                  '),  end="\r")
+                print('            ' + zefoy.sprint('*', 'sending  -', 'hearts...                                  '),  end="\r")
                 print('')
                 self.__search_link(__tiktok_link)
 
@@ -209,14 +216,14 @@ class zefoy:
                 execv(executable, ['python'] + argv)
 
     def __send_req(self) -> None:
-        self.__session.post('https://zefoy.com/' + endpoints['shares'],
+        self.__session.post('https://zefoy.com/' + endpoints['hearts'],
             headers = self.__base_headers(),
             proxies = proxies,
             data = {
                 self.__keys['key_2']: self.__aweme_id,
         })
         
-        print('            ' + zefoy.sprint('*', 'success  -', 'sent ' + Col.white + 'shares' + Col.blue + ' !'))
+        print('            ' + zefoy.sprint('*', 'success  -', 'sent ' + Col.white + 'hearts' + Col.blue + ' !'))
         sleep(5)
     
     def mainloop(self) -> None:
