@@ -1,4 +1,4 @@
-fixed captcha
+unstable captcha solving ? need manual solving - feel free to commit  
 
 #### Demo
 
