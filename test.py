@@ -190,6 +190,32 @@ def __send__(__session__: Session) -> None:
     print('            ' + __sprint__('*', 'success  -', 'sent ' + Col.white + config['mode'] + Col.blue + ' !'))
     sleep(5)
 
+def __test__(__session__, __tiktok_io):
+
+
+    headers = {
+        'authority': 'zefoy.com',
+        'accept': '*/*',
+        'accept-language': 'en,fr-FR;q=0.9,fr;q=0.8,es-ES;q=0.7,es;q=0.6,en-US;q=0.5,am;q=0.4,de;q=0.3',
+        'content-type': 'multipart/form-data; boundary=----WebKitFormBoundarycR4orocx2B0UKJFz',
+        # Requests sorts cookies= alphabetically
+        # 'cookie': 'cf_clearance=kAMtbsTqP9nr2zH.dUqsGIlq60hFfRCsoy1WX.bPhiE-1669637072-0-150; PHPSESSID=0cd862becki7uccif0cuc0j841',
+        'origin': 'https://zefoy.com',
+        'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+        'x-requested-with': 'XMLHttpRequest',
+    }
+
+    data = __keys__['key_1'] + '=' + __tiktok_link 
+
+    response = __session__.post('https://zefoy.com/c2VuZE9nb2xsb3dlcnNfdGlrdG9r', headers=headers, data=data)
+    print(response)
+
 with Session() as __session__:
     __session__.cookies.set('cf_clearance', config['cloudflare'])
     __session__.headers.update({
@@ -219,7 +245,7 @@ with Session() as __session__:
 
         # item_id = livecounts.link_to_id(video_link)
         # Thread(target=__title_loop).start()
-        
+        print(__keys__)
         while True:
             __search__(__session__, video_link); sleep(0.5)
             __send__(__session__); sleep(1)
