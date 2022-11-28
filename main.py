@@ -13,8 +13,9 @@ from threading      import Thread
 from PIL            import Image
 from io             import BytesIO
 
-proxies   = None # experimental
-endpoints = {
+cf_clearance = "kAMtbsTqP9nr2zH.dUqsGIlq60hFfRCsoy1WX.bPhiE-1669637072-0-150"
+proxies      = None # experimental
+endpoints    = {
     "views"     : "c2VuZC9mb2xsb3dlcnNfdGlrdG9V",
     "hearts"    : "c2VuZE9nb2xsb3dlcnNfdGlrdG9r",
     "followers" : "c2VuZF9mb2xsb3dlcnNfdGlrdG9r",
@@ -145,13 +146,15 @@ class zefoy:
             return False
         
     def __init_session(self) -> None:
+        self.__session.cookies.set("cf_clearance", cf_clearance)
         test = self.__session.get('https://zefoy.com/',
             proxies = proxies,
             headers = self.__base_headers()
         )
-        
-        print(test)
-        
+        if test.status_code == 503:
+            print('            ' + zefoy.sprint('x', 'error    -', "cloudflare block, replace cf_clearance cookie"))
+            exit()
+
     def __ad_cookies(self) -> None:
 
         __ad_cookies = self.__session.get("https://partner.googleadservices.com/gampad/cookie.js", 
