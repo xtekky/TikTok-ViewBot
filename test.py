@@ -1,5 +1,11 @@
 from requests import Session
 from re       import findall
+from base64   import b64encode
+
+config = {
+    'cloudflare': 'kAMtbsTqP9nr2zH.dUqsGIlq60hFfRCsoy1WX.bPhiE-1669637072-0-150',
+    'mode'      : 'hearts'
+}
 
 def __init__(__session__: Session) -> tuple:
     __html__ = str(__session__.get('http://zefoy.com').text).replace('&amp;', '&')
@@ -12,9 +18,14 @@ def __init__(__session__: Session) -> tuple:
 
 def __solve__(__session__: Session, captcha_token: str, captcha_url: str) -> True or False:
     captcha_image = __session__.get('https://zefoy.com' + captcha_url).content
+    response = __session__.post('https://captcha.xtekky.repl.co/', json = {
+            'captcha': b64encode(captcha_image).decode('utf-8'),
+        })
+    
+    print(response.content)
 
 with Session() as __session__:
-    __session__.cookies.set("cf_clearance", 'kAMtbsTqP9nr2zH.dUqsGIlq60hFfRCsoy1WX.bPhiE-1669637072-0-150')
+    __session__.cookies.set('cf_clearance', config['cloudflare'])
     __session__.headers.update({
         'authority'             : 'zefoy.com',
         'accept'                : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -34,3 +45,5 @@ with Session() as __session__:
     # print(__session__.headers)
     a, b, c = __init__(__session__)
     print(a, b, c)
+    
+    __solve__(__session__, a, b)
