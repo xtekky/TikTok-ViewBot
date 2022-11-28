@@ -136,12 +136,11 @@ def __solve__(__session__: Session, captcha_token: str, captcha_url: str) -> Tru
     
 def __search__(__session__: Session, __tiktok_link: str) -> None:
     #try:
-        
+        __session__.headers['content-type'] = 'multipart/form-data; boundary=----WebKitFormBoundary'
         __search_link = __session__.post('https://zefoy.com/' + endpoints[config["mode"]],
             proxies   = proxies,
-            data      = {
-                __keys__['key_1']: __tiktok_link
-        })
+            data      = f'------WebKitFormBoundary\r\nContent-Disposition: form-data; name="{__keys__["key_1"]}"\r\n\r\n{__tiktok_link }\r\n------WebKitFormBoundary--\r\n')
+        print(__session__.cookies.get_dict())
         
         __search_link_response = __decrypt__(__search_link.content)
         # print(__search_link_response)
@@ -190,67 +189,69 @@ def __send__(__session__: Session) -> None:
     print('            ' + __sprint__('*', 'success  -', 'sent ' + Col.white + config['mode'] + Col.blue + ' !'))
     sleep(5)
 
-def __test__(__session__, __tiktok_io):
+# def __test__(__session__, __tiktok_link):
 
 
-    headers = {
-        'authority': 'zefoy.com',
-        'accept': '*/*',
-        'accept-language': 'en,fr-FR;q=0.9,fr;q=0.8,es-ES;q=0.7,es;q=0.6,en-US;q=0.5,am;q=0.4,de;q=0.3',
-        'content-type': 'multipart/form-data; boundary=----WebKitFormBoundarycR4orocx2B0UKJFz',
-        # Requests sorts cookies= alphabetically
-        # 'cookie': 'cf_clearance=kAMtbsTqP9nr2zH.dUqsGIlq60hFfRCsoy1WX.bPhiE-1669637072-0-150; PHPSESSID=0cd862becki7uccif0cuc0j841',
-        'origin': 'https://zefoy.com',
-        'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-origin',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
-        'x-requested-with': 'XMLHttpRequest',
-    }
+#     headers = {
+#         'authority': 'zefoy.com',
+#         'accept': '*/*',
+#         'accept-language': 'en,fr-FR;q=0.9,fr;q=0.8,es-ES;q=0.7,es;q=0.6,en-US;q=0.5,am;q=0.4,de;q=0.3',
+#         'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary',
+#         # Requests sorts cookies= alphabetically
+#         # 'cookie': 'cf_clearance=kAMtbsTqP9nr2zH.dUqsGIlq60hFfRCsoy1WX.bPhiE-1669637072-0-150; PHPSESSID=0cd862becki7uccif0cuc0j841',
+#         'origin': 'https://zefoy.com',
+#         'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+#         'sec-ch-ua-mobile': '?0',
+#         'sec-ch-ua-platform': '"Windows"',
+#         'sec-fetch-dest': 'empty',
+#         'sec-fetch-mode': 'cors',
+#         'sec-fetch-site': 'same-origin',
+#         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+#         'x-requested-with': 'XMLHttpRequest',
+#     }
 
-    data = __keys__['key_1'] + '=' + __tiktok_link 
+#     data = f'------WebKitFormBoundary\r\nContent-Disposition: form-data; name="{__keys__["key_1"]}"\r\n\r\n{__tiktok_link }\r\n------WebKitFormBoundary--\r\n'
 
-    response = __session__.post('https://zefoy.com/c2VuZE9nb2xsb3dlcnNfdGlrdG9r', headers=headers, data=data)
-    print(response)
+#     response = __session__.post('https://zefoy.com/c2VuZE9nb2xsb3dlcnNfdGlrdG9r', headers=headers, data=data)
+#     print(response)
 
-with Session() as __session__:
-    __session__.cookies.set('cf_clearance', config['cloudflare'])
-    __session__.headers.update({
-        'authority'             : 'zefoy.com',
-        # 'accept'                : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'accept-language'       : 'en,fr-FR;q=0.9,fr;q=0.8,es-ES;q=0.7,es;q=0.6,en-US;q=0.5,am;q=0.4,de;q=0.3',
-        'cp-extension-installed': 'Yes',
-        'sec-ch-ua'             : '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-        'sec-ch-ua-mobile'      : '?0',
-        'sec-ch-ua-platform'    : '"Windows"',
-        'sec-fetch-dest'        : 'document',
-        'sec-fetch-mode'        : 'navigate',
-        'sec-fetch-site'        : 'none',
-        'sec-fetch-user'        : '?1',
-        'upgrade-insecure-requests' : '1',
-        'user-agent'                : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
-    })
-    
-    # print(__session__.headers)
-    a, b, c = __init__(__session__)
-
-    __start         = time()
-    
-    if __solve__(__session__, a, b) == True:
-        print('            ' + __sprint__('*', 'success  -', f'solved captcha: {Col.white}{round(time() - __start, 1)}{Col.blue}s'))
-        video_link =  "https://www.tiktok.com/@fefepixart/video/7106016809131805958?is_copy_url=1&is_from_webapp=v1" #input('            ' + __sprint__('?', 'input    -', 'video link') + ' > '); print('\n')
-
-        # item_id = livecounts.link_to_id(video_link)
-        # Thread(target=__title_loop).start()
-        print(__keys__)
-        while True:
-            __search__(__session__, video_link); sleep(0.5)
-            __send__(__session__); sleep(1)
+if __name__ == '__main__':
+    with Session() as __session__:
+        __session__.cookies.set('cf_clearance', config['cloudflare'])
+        __session__.headers.update({
+            'authority'             : 'zefoy.com',
+            # 'accept'                : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'accept-language'       : 'en,fr-FR;q=0.9,fr;q=0.8,es-ES;q=0.7,es;q=0.6,en-US;q=0.5,am;q=0.4,de;q=0.3',
+            'cp-extension-installed': 'Yes',
+            'sec-ch-ua'             : '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+            'sec-ch-ua-mobile'      : '?0',
+            'sec-ch-ua-platform'    : '"Windows"',
+            'sec-fetch-dest'        : 'document',
+            'sec-fetch-mode'        : 'navigate',
+            'sec-fetch-site'        : 'none',
+            'sec-fetch-user'        : '?1',
+            'upgrade-insecure-requests' : '1',
+            'user-agent'                : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+            'x-requested-with'          : 'XMLHttpRequest',
+        })
         
-    else:
-        print('            ' + __sprint__('x', 'error    -', 'failed to solve captcha'))
-        input('            ' + __sprint__('*', 'restart  -', 'press ' + Col.white + 'enter'))
-        execv(executable, ['python'] + argv)
+        # print(__session__.headers)
+        a, b, c = __init__(__session__)
+
+        __start         = time()
+        
+        if __solve__(__session__, a, b) == True:
+            print('            ' + __sprint__('*', 'success  -', f'solved captcha: {Col.white}{round(time() - __start, 1)}{Col.blue}s'))
+            video_link =  "https://www.tiktok.com/@fefepixart/video/7106016809131805958?is_copy_url=1&is_from_webapp=v1" #input('            ' + __sprint__('?', 'input    -', 'video link') + ' > '); print('\n')
+
+            item_id = livecounts.link_to_id(video_link)
+            # Thread(target=__title_loop).start()
+            print(__keys__)
+            while True:
+                __search__(__session__, video_link); sleep(0.5)
+                __send__(__session__); sleep(1)
+            
+        else:
+            print('            ' + __sprint__('x', 'error    -', 'failed to solve captcha'))
+            input('            ' + __sprint__('*', 'restart  -', 'press ' + Col.white + 'enter'))
+            execv(executable, ['python'] + argv)
