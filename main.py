@@ -145,10 +145,12 @@ class zefoy:
             return False
         
     def __init_session(self) -> None:
-        self.__session.get('https://zefoy.com/',
+        test = self.__session.get('https://zefoy.com/',
             proxies = proxies,
             headers = self.__base_headers()
         )
+        
+        print(test)
         
     def __ad_cookies(self) -> None:
 
