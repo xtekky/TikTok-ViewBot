@@ -2,7 +2,7 @@ import requests
 
 cookies = {
     'cf_clearance': '6foos05oPCJDGI6XLT6Bjln_TrQCC9g5BO4X5K6GGUI-1669664509-0-150',
-    'PHPSESSID': 's0if6k71l7382ft9epuhk96rt1',
+    'PHPSESSID': '91ih0aq98ptpoocfrk724g6qq2',
 }
 
 headers = {
@@ -19,7 +19,7 @@ headers = {
     'x-requested-with': 'XMLHttpRequest',
 }
 
-data = '------WebKitFormBoundary\r\nContent-Disposition: form-data; name="23f2f98c2e051786"\r\n\r\nhttps://www.tiktok.com/@fefepixart/video/7106016809131805958?is_copy_url=1&is_from_webapp=v1&item_id=7106016809131805958\r\n------WebKitFormBoundary--\r\n'
+data = '------WebKitFormBoundary\r\nContent-Disposition: form-data; name="r75619cf53f5a5d7"\r\n\r\nhttps://www.tiktok.com/@fefepixart/video/7106016809131805958?is_copy_url=1&is_from_webapp=v1&item_id=7106016809131805958\r\n------WebKitFormBoundary--\r\n'
 
 response = requests.post('https://zefoy.com/c2VuZC9mb2xeb3dlcnNfdGlrdG9V', cookies=cookies, headers=headers, data=data)
 print(response.content)
