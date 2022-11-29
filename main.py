@@ -260,7 +260,7 @@ if __name__ == '__main__':
         
         if __solve__(__session__, a, b) == True:
             print('            ' + __sprint__('*', 'success  -', f'solved captcha: {Col.white}{round(time() - __start, 1)}{Col.blue}s'))
-            video_link =  "https://www.tiktok.com/@fefepixart/video/7106016809131805958?is_copy_url=1&is_from_webapp=v1" #input('            ' + __sprint__('?', 'input    -', 'video link') + ' > '); print('\n')
+            video_link =  input('            ' + __sprint__('?', 'input    -', 'video link') + ' > '); print('\n')
 
             item_id = livecounts.link_to_id(video_link)
             # Thread(target=__title_loop).start()
