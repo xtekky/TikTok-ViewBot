@@ -1,8 +1,8 @@
 unpatched
-> added manual solving + cloudflare fix
-> unstable
-> need to put your own sessid sometimes
-> you can find your cloudflare cookies and sessid on zefoy.com under the cookies tab
+> - added manual solving + cloudflare fix    
+> - unstable    
+> - need to put your own sessid sometimes   
+> - you can find your cloudflare cookies and sessid on zefoy.com under the cookies tab   
 
 #### Demo (outdated)
 
