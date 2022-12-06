@@ -1,7 +1,6 @@
-### buy like bot that zefoy uses here - [onlp.sellix.io](https://onlp.sellix.io)   
-#### likes demo: [tikbotting.com](https://tikbotting.com) | [youtube.com/@tekky](https://youtube.com/@tekky)   
+### buy unpatched viewbot here - [onlp.sellix.io](https://onlp.sellix.io)   
 
-unpatched
+patched ?
 > - added manual solving + cloudflare fix    
 > - unstable    
 > - need to put your own sessid sometimes   
