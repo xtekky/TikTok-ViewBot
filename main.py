@@ -99,7 +99,10 @@ def __format__(string: str) -> str:
 def __init__(__session__: Session) -> tuple:
     __html__ = str(__session__.get('http://zefoy.com').text).replace('&amp;', '&')
 
-    captcha_token = findall(r'name="([A-Za-z0-9]{31,32})">', __html__)[0]
+    captcha_token = None
+    results = findall(r'name="([A-Za-z0-9]{31,32})">', html)
+    if results:
+       captcha_token = results[0]
     captcha_url   = findall(r'img src="([^"]*)"', __html__)[0]
     sessid        = __session__.cookies.get('PHPSESSID')
     
