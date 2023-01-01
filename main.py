@@ -3,7 +3,7 @@
 from re             import findall, compile
 from time           import time, sleep
 from json           import loads
-from random         import random
+from random         import random, choices
 from base64         import b64encode, b64decode
 from requests       import Session, get, head, post
 from urllib.parse   import unquote
@@ -17,14 +17,14 @@ from io             import BytesIO
 
 config = {
     'cloudflare': 'kAMtbsTqP9nr2zH.dUqsGIlq60hFfRCsoy1WX.bPhiE-1669637072-0-150',
-    'mode'      : 'hearts'
+    'mode'      : 'views'
 }
 
 item_id      = None
 proxies      = None # experimental
 
 endpoints    = {
-    "views"     : "c2VuZC9mb2xsb3dlcnNfdGlrdG9V",
+    "views"     : "c2VuZC9mb2xeb3dlcnNfdGlrdG9V",
     "hearts"    : "c2VuZE9nb2xsb3dlcnNfdGlrdG9r",
     "followers" : "c2VuZF9mb2xsb3dlcnNfdGlrdG9r",
     "favorites" : "c2VuZF9mb2xsb3dlcnNfdGlrdG9L",
@@ -100,9 +100,10 @@ def __init__(__session__: Session) -> tuple:
     __html__ = str(__session__.get('http://zefoy.com').text).replace('&amp;', '&')
 
     captcha_token = None
-    results = findall(r'name="([A-Za-z0-9]{31,32})">', html)
+    results = findall(r'name="([A-Za-z0-9]{31,32})">', __html__)
     if results:
-       captcha_token = results[0]
+        captcha_token = results[0]
+        
     captcha_url   = findall(r'img src="([^"]*)"', __html__)[0]
     sessid        = __session__.cookies.get('PHPSESSID')
     
@@ -140,31 +141,31 @@ def __solve__(__session__: Session, captcha_token: str, captcha_url: str) -> Tru
 def __search__(__session__: Session, __tiktok_link: str) -> None:
     try:
 
-        cookies = {
-                'cf_clearance': config["cloudflare"],
-                'PHPSESSID'   : __session__.cookies.get_dict()["PHPSESSID"]
-        }
+        req_token = ''.join(choices('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', k=16))
+        sessionid = __session__.cookies.get('PHPSESSID')
+        token = __keys__["key_1"]
         
         headers = {
-            'authority'         : 'zefoy.com',
-            'accept'            : '*/*',
-            'accept-language'   : 'en,fr-FR;q=0.9,fr;q=0.8,es-ES;q=0.7,es;q=0.6,en-US;q=0.5,am;q=0.4,de;q=0.3',
-            'content-type'      : 'multipart/form-data; boundary=----WebKitFormBoundary',
-            'origin'            : 'https://zefoy.com',
-            'sec-ch-ua'         : '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-            'sec-ch-ua-mobile'  : '?0',
+            'authority': 'zefoy.com',
+            'accept': '*/*',
+            'accept-language': 'en,fr-FR;q=0.9,fr;q=0.8,es-ES;q=0.7,es;q=0.6,en-US;q=0.5,am;q=0.4,de;q=0.3',
+            'content-type': f'multipart/form-data; boundary=----WebKitFormBoundary{req_token}',
+            'cookie': f'PHPSESSID={sessionid}',
+            'origin': 'https://zefoy.com',
+            'sec-ch-ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"',
+            'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest'    : 'empty',
-            'sec-fetch-mode'    : 'cors',
-            'sec-fetch-site'    : 'same-origin',
-            'user-agent'        : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
-            'x-requested-with'  : 'XMLHttpRequest',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+            'x-requested-with': 'XMLHttpRequest',
         }
 
-        __search_link = post(f'https://zefoy.com/{endpoints[config["mode"]]}', headers=headers,
-            data    = f'------WebKitFormBoundary\r\nContent-Disposition: form-data; name="{__keys__["key_1"]}"\r\n\r\n{__tiktok_link }\r\n------WebKitFormBoundary--\r\n', 
-            cookies = cookies
-        )
+        data = f'------WebKitFormBoundary{req_token}\r\nContent-Disposition: form-data; name="{token}"\r\n\r\nhttps://www.tiktok.com/@ninia355/video/7183719544077225222\r\n------WebKitFormBoundary{req_token}--\r\n'
+
+        __search_link = post(f'https://zefoy.com/{endpoints[config["mode"]]}', headers=headers, data=data)
+
         __search_link_response = __decrypt__(__search_link.content)
 
         if "Session expired. Please re-login." in __search_link_response:
@@ -223,11 +224,13 @@ def __send__(__session__: Session) -> None:
         'user-agent'        : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
         'x-requested-with'  : 'XMLHttpRequest',
     }
+    
+    
 
     __send_req = post(f'https://zefoy.com/{endpoints[config["mode"]]}', headers = headers,
         data    = f'------WebKitFormBoundary\r\nContent-Disposition: form-data; name="{__keys__["key_2"]}"\r\n\r\n{item_id}\r\n------WebKitFormBoundary--\r\n', 
         cookies = {
-            'cf_clearance': config["cloudflare"],
+            # 'cf_clearance': config["cloudflare"],
             'PHPSESSID'   : __session__.cookies.get_dict()["PHPSESSID"]
     })
     
@@ -238,7 +241,7 @@ def __send__(__session__: Session) -> None:
 
 if __name__ == '__main__':
     with Session() as __session__:
-        __session__.cookies.set('cf_clearance', config['cloudflare'])
+        # __session__.cookies.set('cf_clearance', config['cloudflare'])
         __session__.headers.update({
             'authority'             : 'zefoy.com',
             # 'accept'                : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -263,12 +266,12 @@ if __name__ == '__main__':
         
         if __solve__(__session__, a, b) == True:
             print('            ' + __sprint__('*', 'success  -', f'solved captcha: {Col.white}{round(time() - __start, 1)}{Col.blue}s'))
-            video_link =  input('            ' + __sprint__('?', 'input    -', 'video link') + ' > '); print('\n')
+            video_link = 'https://www.tiktok.com/@chneyx/video/7183354278180883739' #input('            ' + __sprint__('?', 'input    -', 'video link') + ' > '); print('\n')
 
             item_id = livecounts.link_to_id(video_link)
             # Thread(target=__title_loop).start()
             # print(__keys__)
-            # sleep(4)
+            # sleep(4) 
             while True:
                 __search__(__session__, video_link); sleep(0.5)
                 __send__(__session__); sleep(1)
