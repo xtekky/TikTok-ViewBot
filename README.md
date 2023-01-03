@@ -1,3 +1,5 @@
+Unpatched viewnbot: https://onlp.sellix.io/product/62f065331f31a !!
+
 updated !
 > - added manual solving + cloudflare fix    
 > - unstable    
