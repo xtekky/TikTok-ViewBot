@@ -188,7 +188,7 @@ def __search__(__session__: Session, __tiktok_link: str) -> None:
                 print('            ' + __sprint__('*', 'sleeping -', 'for ' + Col.white + time_left +  Col.blue +' seconds'),  end="\r"); sleep(1)
             print('            ' + __sprint__('*', 'sending  -', f'{config["mode"]}...                                  '),  end="\r")
             print('')
-            __search__(__tiktok_link)
+            __search__(__session__, __tiktok_link)
 
         except Exception as e:
             print('            ' + __sprint__('x', 'error    -', str(e)))
@@ -250,7 +250,7 @@ if __name__ == '__main__':
         # print(__session__.headers)
         a, b, c = __init__(__session__)
 
-        __start         = time()
+        __start = time()
         
         if __solve__(__session__, a, b) == True:
             print('            ' + __sprint__('*', 'success  -', f'solved captcha: {Col.white}{round(time() - __start, 1)}{Col.blue}s'))
