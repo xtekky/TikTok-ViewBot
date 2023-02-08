@@ -41,11 +41,6 @@ repo works again, maybe needs proxies but here you go -->
 <img src="https://cdn.discordapp.com/attachments/979095432682676264/996481048605106186/unknown.png"></img>
 </p>
 
-skids:
-```
-  https://github.com/XNorealsS/tiktokbot-view
-  https://github.com/haphucduy28/1/blob/main/viewtiktok.py
-```
 
 How to run:
 ```
