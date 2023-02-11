@@ -118,13 +118,16 @@ def __solve__(__session__: Session, captcha_token: str, captcha_url: str) -> Tru
             captcha_token   : ""
         })
         
+        print(response.text)
+        
         __keys__["key_1"]  = findall('(?<=")[a-z0-9]{16}', response.text)[0]
 
         return True
     
     except Exception as e:
+        
         print('            ' + __sprint__('x', 'error    -', str(e)))
-        return False
+        __solve__(__session__, captcha_token, captcha_url)
 
 def __search__(__session__: Session, __tiktok_link: str) -> None:
     try:
