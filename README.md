@@ -1,44 +1,22 @@
-updating...
+updated
 
 <!-- #### Paid unpatched viewbot for 24.99€ !!: https://onlp.sellix.io or in dc server 
 repo works again, maybe needs proxies but here you go -->
 
 <h2 align="center">server: <a href="https://discord.gg/onlpx">discord.gg/onlpx</a></h2>
 
-<!--
-<p align="center">
-400 followers / 500 stars = leaked unpatched viewbot 1k/s
-</p>
 
 
 &emsp;
 
 <h2 align="center">tutorial: <a href="https://www.youtube.com/watch?v=x97aLsPSJtQ">youtube.com/watch?v=x97aLsPSJtQ</a></h2>
 
-<!--
-<p align="center">
-<del>100 stars = captcha solver</del>
-</p><p align="center">
-<del>170 stars = open source solver</del>
-</p><p align="center">
-200 stars = viewbot in golang + proxy support + bot multiple videos same time (SOON, on vacation rn so can't release)
-</p><p align="center">
-250 stars = viewbot using freer api (2x faster)
-</p><p align="center">
-500 stars = unpatched viewbot using real tiktok api
-</p>
--->
-
-<!--
 
 <p align="center"> 
-<img src="https://global.tiktokworld21.com/images/TT_Logo.png"></img>
+<img src="https://user-images.githubusercontent.com/98614666/218313368-e8b3613c-6639-4922-95ac-c23bbcdffdf1.png"></img>
 </p>
-
--->
-
 <p align="center"> 
-<img src="https://cdn.discordapp.com/attachments/979095432682676264/996481048605106186/unknown.png"></img>
+<img src="https://user-images.githubusercontent.com/98614666/218313369-31f5049c-0dd4-4eca-b323-cccc3436a418.png"></img>
 </p>
 
 
