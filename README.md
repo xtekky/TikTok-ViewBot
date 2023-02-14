@@ -3,7 +3,7 @@ updated
 <!-- #### Paid unpatched viewbot for 24.99€ !!: https://onlp.sellix.io or in dc server 
 repo works again, maybe needs proxies but here you go -->
 
-<h2 align="center">server: <a href="https://discord.gg/onlpx">discord.gg/onlpx</a></h2>
+<h2 align="center">server: <a href="https://discord.gg/onlp">discord.gg/onlpx</a></h2>
 
 
 
