@@ -10,31 +10,34 @@ from colorama       import Fore, init; init()
 from datetime       import datetime
 from json           import load
 
+mode = 'c2VuZF9mb2xsb3dlcnNfdGlrdG9L'
+
 
 def fmt(string) -> str:
     return f"{Fore.CYAN}{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} {Fore.BLUE}INFO {Fore.MAGENTA}__main__ -> {Fore.RESET}{string}"
 
 class Client:
     def session() -> Session:
-        return Session(client_identifier='chrome_108')
+        return Session(client_identifier='chrome110')
     
     def headers(extra: dict = {}) -> dict:
         return {
             **extra,
-            "host"              : "zefoy.com",
-            "connection"        : "keep-alive",
-            "sec-ch-ua"         : "\"Not_A Brand\";v=\"99\", \"Google Chrome\";v=\"109\", \"Chromium\";v=\"109\"",
-            "accept"            : "*/*",
-            "x-requested-with"  : "XMLHttpRequest",
-            "sec-ch-ua-mobile"  : "?0",
-            "user-agent"        : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "origin"            : "https://zefoy.com",
-            "sec-fetch-site"    : "same-origin",
-            "sec-fetch-mode"    : "cors",
-            "sec-fetch-dest"    : "empty",
-            "accept-encoding"   : "gzip, deflate, br",
-            "accept-language"   : "en-US,en;q=0.9",
+            'authority': 'zefoy.com',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en,fr-FR;q=0.9,fr;q=0.8,es-ES;q=0.7,es;q=0.6,en-US;q=0.5,am;q=0.4,de;q=0.3',
+            'cache-control': 'no-cache',
+            'cp-extension-installed': 'Yes',
+            'pragma': 'no-cache',
+            'sec-ch-ua': '"Google Chrome";v="111", "Not(A:Brand";v="8", "Chromium";v="111"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"macOS"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'none',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
         }
 
 class Captcha:
@@ -44,11 +47,14 @@ class Captcha:
     def solve(this) -> None:
         try:
             html           = str(this.client.get('https://zefoy.com', headers = Client.headers()).text).replace('&amp;', '&')
+            print(html)
+            
             captcha_token  = findall(r'<input type="hidden" name="(.*)">', html)[0]
             captcha_url    = findall(r'img src="([^"]*)"', html)[0]
             
             print(fmt(f'captcha_token: {captcha_token}'))
             print(fmt(f'captcha_url: {captcha_url}'))
+            
             
             captcha_image  = get('https://zefoy.com' + captcha_url, headers = Client.headers(), cookies=this.client.cookies.get_dict()).content;
             image          = Image.open(BytesIO(captcha_image));image.show()
@@ -82,7 +88,7 @@ class Zefoy:
     def send(this, token: str, aweme_id: str) -> None:
         try:
             payload = f"--tekky\r\nContent-Disposition: form-data; name=\"{token}\"\r\n\r\n{aweme_id}\r\n--tekky--\r\n"
-            response = this.decode(this.client.post("https://zefoy.com/c2VuZC9mb2xeb3dlcnNfdGlrdG9V", 
+            response = this.decode(this.client.post("https://zefoy.com/" + mode, 
                 data = payload, headers = Client.headers({"content-type": "multipart/form-data; boundary=tekky",})).text.encode())
             
             if 'views sent' in response: 
@@ -98,7 +104,7 @@ class Zefoy:
         try:
 
             payload = f"--tekky\r\nContent-Disposition: form-data; name=\"{this.key}\"\r\n\r\n{link}\r\n--tekky--\r\n"
-            response = this.decode(this.client.post("https://zefoy.com/c2VuZC9mb2xeb3dlcnNfdGlrdG9V", 
+            response = this.decode(this.client.post("https://zefoy.com/" + mode, 
                 data = payload, headers = Client.headers({"content-type": "multipart/form-data; boundary=tekky",})).text.encode())
             
             if 'comviews' in response:
