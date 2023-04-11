@@ -1,4 +1,4 @@
-zefoy made some changes, an update is on its way !!
+NOT WORKING, NEEDS UPDATE
 
 <!-- #### Paid unpatched viewbot for 24.99€ !!: https://onlp.sellix.io or in dc server 
 repo works again, maybe needs proxies but here you go -->
