@@ -47,14 +47,13 @@ class Captcha:
     def solve(this) -> None:
         try:
             html           = str(this.client.get('https://zefoy.com', headers = Client.headers()).text).replace('&amp;', '&')
-            print(html)
             
             captcha_token  = findall(r'<input type="hidden" name="(.*)">', html)[0]
             captcha_url    = findall(r'img src="([^"]*)"', html)[0]
+            captcha_token_v2 = findall(r'type="text" maxlength="50" name="(.*)" oninput="this.value', html)[0]
             
             print(fmt(f'captcha_token: {captcha_token}'))
             print(fmt(f'captcha_url: {captcha_url}'))
-            
             
             captcha_image  = get('https://zefoy.com' + captcha_url, headers = Client.headers(), cookies=this.client.cookies.get_dict()).content;
             image          = Image.open(BytesIO(captcha_image));image.show()
@@ -62,7 +61,7 @@ class Captcha:
             captcha_answer = input('solve captcha: ')
             
             response = this.client.post('https://zefoy.com', headers = Client.headers({"content-type": "application/x-www-form-urlencoded"}), data = {
-                    "captcha_secure": captcha_answer,
+                    captcha_token_v2: captcha_answer,
                     captcha_token   : ""
             })
             

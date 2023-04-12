@@ -10,6 +10,8 @@ from colorama     import Fore, init; init()
 from datetime     import datetime
 from urllib.parse import unquote, quote
 
+#from tls_client import Session
+
 
 def fmt(string) -> str:
     return f"{Fore.CYAN}{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} {Fore.BLUE}INFO {Fore.MAGENTA}__main__ -> {Fore.RESET}{string}"
@@ -75,9 +77,9 @@ def solve_captcha(client: Session) -> None:
                 captcha_token   : ""
         })
         
-        print(response.text)
+        #print(response.text)
         
-        key_1 = findall(r'input-secure" name="(.*)" placeholder', response.text)[0]
+        key_1 = findall(r'remove-spaces" name="(.*)" placeholder', response.text)[0]
         
         print(fmt(f'key_1: {key_1}'))
         
@@ -89,45 +91,68 @@ def solve_captcha(client: Session) -> None:
     
 def send(client: Session, key: str, aweme_id: str) -> None:
     
-    token = choices(ascii_letters + digits, k=16)
+    token = ''.join(choices(ascii_letters + digits, k=16))
     data  = f'------WebKitFormBoundary{token}\r\nContent-Disposition: form-data; name="{key}"\r\n\r\n{aweme_id}\r\n------WebKitFormBoundary{token}--\r\n'
-
-    print(data)
-    response = decode(post('https://zefoy.com/c2VuZF9mb2xsb3dlcnNfdGlrdG9L', data=data,
+    
+    # data = {
+    #     key: aweme_id
+    # }
+    
+    cookies = client.cookies.get_dict() | {
+        'user_agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
+        'window_size': '788x841',
+        
+        '_ga': 'GA1.1.1129024515.1681241946',
+        '__gads': 'ID=8310bfabde912e1c-22433ff457dc0089:T=1681241946:RT=1681241946:S=ALNI_MZ595crKlMda2mcv0z8CUqI6ZPixA',
+        '__gpi': 'UID=00000c0098073f57:T=1681241946:RT=1681241946:S=ALNI_MaFjF61WwqpZTpOZ-TUV20ipRozZQ',
+        '_ga_1WEXNS5FFP': 'GS1.1.1681241946.1.1.1681241951.0.0.0',
+    } 
+    
+    print(cookies)
+    
+    #lient = Session(client_identifier='chrome110')
+    
+    response = post('https://zefoy.com/c2VuZF9mb2xsb3dlcnNfdGlrdG9L', data = data, cookies = cookies,
         headers = {
             'authority': 'zefoy.com',
             'accept': '*/*',
             'accept-language': 'en,fr-FR;q=0.9,fr;q=0.8,es-ES;q=0.7,es;q=0.6,en-US;q=0.5,am;q=0.4,de;q=0.3',
             'cache-control': 'no-cache',
             'content-type': f'multipart/form-data; boundary=----WebKitFormBoundary{token}',
-            'cookie': f'PHPSESSID={client.cookies.get("PHPSESSID")}',
             'origin': 'https://zefoy.com',
             'pragma': 'no-cache',
-            'sec-ch-ua': '"Google Chrome";v="111", "Not(A:Brand";v="8", "Chromium";v="111"',
+            'sec-ch-ua': '"Chromium";v="112", "Google Chrome";v="112", "Not:A-Brand";v="99"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"macOS"',
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
-            'x-requested-with': 'XMLHttpRequest'}).text.encode())
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',
+            'x-requested-with': 'XMLHttpRequest'}).text
     
-    if 'views sent' in decode(response): 
+    response = unquote(response[::-1]).encode()
+    response = b64decode(response).decode()
+    print(response)
+    
+    if 'Session expired' in response:
+        raise Exception('session expired')
+        exit()
+    
+    if 'views sent' in response: 
         print(fmt(f'views sent to {aweme_id}'))
     
     else:
         print(fmt(f'Failed to send views to {aweme_id}'))
 
-
 def search_link(client: Session, key_1: str, tiktok_url: str) -> str:
-    token = choices(ascii_letters + digits, k=16)
+    #token = choices(ascii_letters + digits, k=16)
 
-    data = f'------WebKitFormBoundary{token}\r\nContent-Disposition: form-data; name="{key_1}"\r\n\r\n{tiktok_url}\r\n------WebKitFormBoundary{token}--\r\n'
+    data = f'------WebKitFormBoundary\r\nContent-Disposition: form-data; name="{key_1}"\r\n\r\n{tiktok_url}\r\n------WebKitFormBoundary--\r\n'
 
-    print(client.cookies)
-    print(client.cookies.get("PHPSESSID"))
-    print(key_1)
-    print(tiktok_url)
+    # print(client.cookies)
+    # print(client.cookies.get("PHPSESSID"))
+    # print(key_1)
+    # print(tiktok_url)
     
     response =  decode(post('https://zefoy.com/c2VuZF9mb2xsb3dlcnNfdGlrdG9L', data = data, 
         headers = {
@@ -135,7 +160,7 @@ def search_link(client: Session, key_1: str, tiktok_url: str) -> str:
             'accept': '*/*',
             'accept-language': 'en,fr-FR;q=0.9,fr;q=0.8,es-ES;q=0.7,es;q=0.6,en-US;q=0.5,am;q=0.4,de;q=0.3',
             'cache-control': 'no-cache',
-            'content-type': f'multipart/form-data; boundary=----WebKitFormBoundary{token}',
+            'content-type': f'multipart/form-data; boundary=----WebKitFormBoundary',
             'cookie': f'PHPSESSID={client.cookies.get("PHPSESSID")}',
             'origin': 'https://zefoy.com',
             'pragma': 'no-cache',
@@ -148,9 +173,10 @@ def search_link(client: Session, key_1: str, tiktok_url: str) -> str:
             'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
             'x-requested-with': 'XMLHttpRequest',}).text.encode())
     
-    print(response)
+    #print(response)
 
-    if 'comviews' in response:
+    if "onsubmit=\"showHideElements('.w1r','.w2r')" in response:
+        print(response)
         token, aweme_id = findall(r'name="(.*)" value="(.*)" hidden', response)[0]
         print(fmt(f'sending to: {aweme_id} | key_2: {token}'))
 
