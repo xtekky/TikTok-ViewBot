@@ -1,5 +1,7 @@
 UPDATED !! (temporary fix)
 
+`v2.py` has automatic captcha solver
+
 <!-- #### Paid unpatched viewbot for 24.99€ !!: https://onlp.sellix.io or in dc server 
 repo works again, maybe needs proxies but here you go -->
 
