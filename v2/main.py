@@ -10,9 +10,6 @@ from colorama     import Fore, init; init()
 from datetime     import datetime
 from urllib.parse import unquote, quote
 
-#from tls_client import Session
-
-
 def fmt(string) -> str:
     return f"{Fore.CYAN}{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} {Fore.BLUE}INFO {Fore.MAGENTA}__main__ -> {Fore.RESET}{string}"
 
@@ -28,10 +25,6 @@ def get_client() -> Session:
         'cp-extension-installed': 'Yes',
         'user-agent'            : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
     }
-    
-    #client.cookies.set('window_size', '546x776')
-    #client.cookies.set('user_agent', f"{quote(client.headers['user-agent'])}")
-    
     return client
 
 def solve_captcha(client: Session) -> None:
@@ -77,8 +70,6 @@ def solve_captcha(client: Session) -> None:
                 captcha_token   : ""
         })
         
-        #print(response.text)
-        
         key_1 = findall(r'remove-spaces" name="(.*)" placeholder', response.text)[0]
         
         print(fmt(f'key_1: {key_1}'))
@@ -94,10 +85,6 @@ def send(client: Session, key: str, aweme_id: str) -> None:
     token = ''.join(choices(ascii_letters + digits, k=16))
     data  = f'------WebKitFormBoundary{token}\r\nContent-Disposition: form-data; name="{key}"\r\n\r\n{aweme_id}\r\n------WebKitFormBoundary{token}--\r\n'
     
-    # data = {
-    #     key: aweme_id
-    # }
-    
     cookies = client.cookies.get_dict() | {
         'user_agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
         'window_size': '788x841',
@@ -109,9 +96,6 @@ def send(client: Session, key: str, aweme_id: str) -> None:
     } 
     
     print(cookies)
-    
-    #lient = Session(client_identifier='chrome110')
-    
     response = post('https://zefoy.com/c2VuZF9mb2xsb3dlcnNfdGlrdG9L', data = data, cookies = cookies,
         headers = {
             'authority': 'zefoy.com',
@@ -137,23 +121,13 @@ def send(client: Session, key: str, aweme_id: str) -> None:
     if 'Session expired' in response:
         raise Exception('session expired')
         exit()
-    
     if 'views sent' in response: 
         print(fmt(f'views sent to {aweme_id}'))
-    
     else:
         print(fmt(f'Failed to send views to {aweme_id}'))
 
 def search_link(client: Session, key_1: str, tiktok_url: str) -> str:
-    #token = choices(ascii_letters + digits, k=16)
-
     data = f'------WebKitFormBoundary\r\nContent-Disposition: form-data; name="{key_1}"\r\n\r\n{tiktok_url}\r\n------WebKitFormBoundary--\r\n'
-
-    # print(client.cookies)
-    # print(client.cookies.get("PHPSESSID"))
-    # print(key_1)
-    # print(tiktok_url)
-    
     response =  decode(post('https://zefoy.com/c2VuZF9mb2xsb3dlcnNfdGlrdG9L', data = data, 
         headers = {
             'authority': 'zefoy.com',
@@ -172,8 +146,6 @@ def search_link(client: Session, key_1: str, tiktok_url: str) -> str:
             'sec-fetch-site': 'same-origin',
             'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
             'x-requested-with': 'XMLHttpRequest',}).text.encode())
-    
-    #print(response)
 
     if "onsubmit=\"showHideElements('.w1r','.w2r')" in response:
         print(response)
@@ -191,20 +163,21 @@ def search_link(client: Session, key_1: str, tiktok_url: str) -> str:
 
         start = time()
         while time() < start + int(timer):
-
             print(fmt(f'time to sleep: {round((start + int(timer)) - time())}   '),  end="\r")
             sleep(1)
         
         print(fmt(f'sending views...                '),  end="\r")
 
-tiktok_url = 'https://www.tiktok.com/@minniehouse16/video/7214847085642812714' #input('tiktok url: ')
-client     = get_client()
-key_1      = solve_captcha(client)
+        
+if __name__ == '__main__':
+    tiktok_url = 'https://www.tiktok.com/@minniehouse16/video/7214847085642812714' #input('tiktok url: ')
+    client     = get_client()
+    key_1      = solve_captcha(client)
 
-if not key_1:
-    print(fmt('Failed to solve captcha (zefoy may have blocked you)'))
-    exit()
+    if not key_1:
+        print(fmt('Failed to solve captcha (zefoy may have blocked you)'))
+        exit()
 
-while True:
-    search_link(client, key_1, tiktok_url)
-    sleep(5)
+    while True:
+        search_link(client, key_1, tiktok_url)
+        sleep(5)
