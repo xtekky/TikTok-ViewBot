@@ -1,6 +1,6 @@
 UPDATED !! (temporary fix) thanks to [@platipus9999](https://github.com/platipus9999)
 
-`v2.py` has automatic captcha solver
+`v2.py` has automatic captcha solving.
 
 
 &emsp;
@@ -14,16 +14,14 @@ UPDATED !! (temporary fix) thanks to [@platipus9999](https://github.com/platipus
 
 
 How to run:
-```
-  1. Verify that you have pip and python installed => https://www.youtube.com/watch?v=dYfKJMPNMDw
-  2. Run this command in cmd: pip install tls_client requests colorama pillow
-  3. run the python file by double clicking on it or type: python viewbot.py
-```
+
+1. Verify that you have pip and python installed => https://www.youtube.com/watch?v=dYfKJMPNMDw
+2. Run this command in cmd: `pip install tls_client requests colorama pillow`
+4. run the python file by double clicking on it or run this command: `python viewbot.py`
 
 Advantages:
-```
-  1.  fast, easy
-  2.  lightweight
-  3.  Has dynamic views count running on TikTok API
-  4.  mobile users can run it
-```
+
+1.  Fast and easy
+2.  Lightweight
+3.  Has a dynamic view count running on TikTok API
+4.  Mobile users can run it
