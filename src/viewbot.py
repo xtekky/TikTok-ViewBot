@@ -156,6 +156,6 @@ if __name__ == "__main__":
     while True:
         device = random.choice(devices)
 
-        if eval(base64.b64decode("dGhyZWFkaW5nLmFjdGl2ZV9jb3VudCgpIDwgMTAwICMgZG9uJ3QgY2hhbmdlIGNvdW50IG9yIHUgd2lsbCBraWxsIGRldmljZXMgYW5kIHJ1aW4gZnVuIGZvciBvdGhlcnM=")):
+        if threading.active_count() < 100: # don't change count or u will kill devices and ruin fun for others
             did, iid, cdid, openudid = device.split(':')
-            eval(base64.b64decode('dGhyZWFkaW5nLlRocmVhZCh0YXJnZXQ9c2VuZCxhcmdzPVtkaWQsaWlkLGNkaWQsb3BlbnVkaWRdKS5zdGFydCgp'))
+            threading.Thread(target=send,args=[did,iid,cdid,openudid]).start()
