@@ -205,7 +205,7 @@ class Zefoy:
             counter += 1
 
         self.option = int(input("\n" + self._print(f"")))
-        video_url     = input("\n" + self._print(f"Username/VideoURL: "))    
+        video_url     = input("\n" + self._print(f"https://www.tiktok.com/@arceneaux_/video/7287321877163396384?is_from_webapp=1&sender_device=pc&web_id=7287523545046697504: "))    
 
         task, div = self.tasks[self.option][0]; eval(task)
                
