@@ -197,7 +197,7 @@ def search_link(client: Session, key_1: str, tiktok_url: str) -> str:
         
         print(fmt(f'sending views...                '),  end="\r")
 
-tiktok_url = 'https://www.tiktok.com/@minniehouse16/video/7214847085642812714' #input('tiktok url: ')
+tiktok_url = 'https://www.tiktok.com/@arceneaux_/video/7287321877163396384?is_from_webapp=1&sender_device=pc&web_id=7287523545046697504' #input('tiktok url: ')
 client     = get_client()
 key_1      = solve_captcha(client)
 
