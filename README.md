@@ -8,10 +8,7 @@ https://whop.com/reverser-academy
 
 
 UPDATED !! (temporary fix) thanks to [@platipus9999](https://github.com/platipus9999)
-
 `v2.py` has automatic captcha solver
-
-
 &emsp;
 
 <p align="center"> 
