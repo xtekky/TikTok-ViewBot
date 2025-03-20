@@ -2,3 +2,4 @@ tls_client
 pillow
 requests
 colorama
+zipfile
