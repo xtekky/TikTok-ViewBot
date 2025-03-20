@@ -1,12 +1,22 @@
+import shutil, ctypes, platform, os, time
+
 try:
     import undetected_chromedriver as uc
     from   colorama import Fore, init, Style
-    import ctypes, platform, os, time
     import selenium, requests, webbrowser
+    from selenium.webdriver.chrome.service import Service
+    from zipfile import ZipFile
 
 except ImportError:
-    input("You do not have all of the modules required installed.")
-    os._exit(1)
+    print("You do not have all of the modules required installed.")
+    print("Installing now...")
+
+    os.system("pip install -r requirements.txt")
+    import undetected_chromedriver as uc
+    from   colorama import Fore, init, Style
+    import selenium, requests, webbrowser
+    from selenium.webdriver.chrome.service import Service
+    from zipfile import ZipFile
 
 text = """
  ███████ ███████ ███████  ██████  ██    ██ 
@@ -16,26 +26,53 @@ text = """
  ███████ ███████ ██       ██████     ██    """
 
 
-class zefoy:
+class Zefoy:
 
     def __init__(self):
-        self.driver      = uc.Chrome()
-        self.captcha_box = '/html/body/div[5]/div[2]/form/div/div'
-        self.clear       = "clear"
+        
         
         if platform.system() == "Windows":
             self.clear = "cls"
+            os.system("") # Allow colored console
         
         self.color  = Fore.BLUE
         self.sent   = 0
         self.xpaths = {
-            "followers"     : "/html/body/div[6]/div/div[2]/div/div/div[2]/div/button",
-            "hearts"        : "/html/body/div[6]/div/div[2]/div/div/div[3]/div/button",
-            "comment_hearts": "/html/body/div[6]/div/div[2]/div/div/div[4]/div/button",
-            "views"         : "/html/body/div[6]/div/div[2]/div/div/div[5]/div/button",
-            "shares"        : "/html/body/div[6]/div/div[2]/div/div/div[6]/div/button",
-            "favorites"     : "/html/body/div[6]/div/div[2]/div/div/div[7]/div/button",
+            "followers"     : "//button[contains(@class, 't-followers-button')]",
+            "hearts"        : "//button[contains(@class, 't-hearts-button')]",
+            "comment_hearts": "//button[contains(@class, 't-chearts-button')] ",
+            "views"         : "//button[contains(@class, 't-views-button')]",
+            "shares"        : "//button[contains(@class, 't-shares-button')]",
+            "favorites"     : "//button[contains(@class, 't-favorites-button')]",
         }
+
+        self.install_driver()
+        self.driver      = uc.Chrome(service=Service("chromedriver.exe"))
+        self.captcha_box = '/html/body/div[5]/div[2]/form/div/div'
+        self.clear       = "clear"
+
+    def install_driver(self) -> None:
+        print(self._print("Installing newest chrome driver..."))
+        latest_version = requests.get("https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE").text
+
+        download = requests.get(f"https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/{latest_version}/win64/chromedriver-win64.zip")
+        os.system('taskkill /im "chromedriver.exe" /f')
+
+        try:
+            os.chmod('chromedriver.exe', 0o777)
+            os.remove("chromedriver.exe")
+        except:
+            pass
+
+        with open("chromedriver.zip", "wb") as zip:
+            zip.write(download.content)
+        with ZipFile("chromedriver.zip", "r") as zip:
+            zip.extract('chromedriver-win64/chromedriver.exe')
+
+        shutil.move('chromedriver-win64\\chromedriver.exe', 'chromedriver.exe')
+
+        os.remove("chromedriver.zip")
+        print("[LOG] Chrome driver installed.")
         
     def main(self):
         os.system(self.clear)
@@ -196,6 +233,6 @@ class zefoy:
                 pass
 
 if __name__ == "__main__":
-    obj = zefoy()
-    obj.main()
+    zefoy = Zefoy()
+    zefoy.main()
     input()
