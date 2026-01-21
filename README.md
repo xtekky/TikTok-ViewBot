@@ -1,4 +1,4 @@
-New 2025 update:
+New 2025 update:https://vt.tiktok.com/ZSaj9PtDD/
 
 Instead of unpatching every 2 days, I made a course to **teach you guys exactly how i made zefoy bo**t and much much more and also **5+ years of reverse engineering knowledge**:
 
