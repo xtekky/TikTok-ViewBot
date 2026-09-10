@@ -1,17 +1,7 @@
-New 2025 update:
+updating soon
+join https://t.me/onlpx
 
-Instead of unpatching every 2 days, I made a course to **teach you guys exactly how i made zefoy bo**t and much much more and also **5+ years of reverse engineering knowledge**:
-
-https://whop.com/reverser-academy
-
-<img width="790" alt="image" src="https://github.com/user-attachments/assets/36b54b7f-e9b7-48ce-825e-65d7dbdf0dad" />
-
-
-UPDATED !! (temporary fix) thanks to [@platipus9999](https://github.com/platipus9999)
-
-`v2.py` has automatic captcha solver
-
-
+___
 &emsp;
 
 <p align="center"> 
